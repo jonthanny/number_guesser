@@ -21,3 +21,19 @@ header {
 .logo-emphasis {
   font-weight: 700;
 }
+
+.logo-subtitle {
+  display: inline-block;
+}
+
+.logo-lines {
+  display: inline-block;
+  height: 1px;
+  width: 30px;
+  background-color: white;
+}
+
+#subtitle {
+  display: flex;
+  justify-content: center;
+}
