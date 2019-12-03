@@ -1,10 +1,38 @@
+/* || General Formatting */
 * {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+/* || Body Formatting */
 header {
-  background-color: #404041
+  background-color: #404041;
+}
+
+main {
+  display:flex;
+  flex-flow:row;
+  height: 100vh;
+}
+section {
+  border:solid;
+}
+
+.left-side {
+  display:flex;
+  flex-grow:1;
+  flex-shrink: 1;
+  flex-basis:auto;
+  width:50%;
+  background-color: #f7f7f7;
+}
+
+.right-side {
+  display:flex;
+  flex-grow:1;
+  flex-shrink: 1;
+  flex-basis:auto;
+  width:50%;
+  background-color: #d0d2d3;
 }
