@@ -5,6 +5,18 @@
   box-sizing: border-box;
 }
 
+#main-logo-line {
+  font-size: 50px;
+  color: #dd1972;
+}
+
 header {
-  background-color: #404041
+  background-color: #404041;
+  height: 15vh;
+  color: white;
+  text-align: center;
+}
+
+.logo-emphasis {
+  font-weight: 700;
 }
