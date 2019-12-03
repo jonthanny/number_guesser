@@ -22,18 +22,29 @@ header {
   font-weight: 700;
 }
 
-.logo-subtitle {
-  display: inline-block;
-}
-
-.logo-lines {
-  display: inline-block;
-  height: 1px;
-  width: 30px;
-  background-color: white;
-}
-
-#subtitle {
+main {
   display: flex;
-  justify-content: center;
+  flex-flow: row;
+  height: 100vh;
+}
+section {
+}
+
+/* || Left and Right Section Formaating*/
+.left-side {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  background-color: #f7f7f7;
+  border-right: 1px solid #8b8b8b;
+}
+
+.right-side {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  background-color: #d0d2d3;
+  border-left: 1px solid #8b8b8b;
 }
