@@ -23,31 +23,28 @@ header {
 }
 
 main {
-  display:flex;
-  flex-flow:row;
+  display: flex;
+  flex-flow: row;
   height: 100vh;
-
 }
 section {
 }
 
 /* || Left and Right Section Formaating*/
 .left-side {
-  display:flex;
-  flex-grow:1;
+  display: flex;
+  flex-grow: 1;
   flex-shrink: 1;
-  flex-basis:auto;
-  width:50%;
+  flex-basis: 50%;
   background-color: #f7f7f7;
-  border-right:1px solid #8b8b8b;
+  border-right: 1px solid #8b8b8b;
 }
 
 .right-side {
-  display:flex;
-  flex-grow:1;
+  display: flex;
+  flex-grow: 1;
   flex-shrink: 1;
-  flex-basis:auto;
-  width:50%;
+  flex-basis: 50%;
   background-color: #d0d2d3;
-  border-left:1px solid #8b8b8b;
+  border-left: 1px solid #8b8b8b;
 }
