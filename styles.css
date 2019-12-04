@@ -42,9 +42,35 @@ section {
 
 .right-side {
   display: flex;
+  justify-content: center;
+  padding-top:10px;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 50%;
   background-color: #d0d2d3;
   border-left: 1px solid #8b8b8b;
+}
+.card {
+  display: flex;
+  flex-direction:column;
+  width: 80%;
+  height: 400px;
+  padding: 10px;
+  background-color: blue;
+}
+
+.card header {
+  display: flex;
+  align-self: flex-start;
+  background-color: pink;
+}
+
+.card footer {
+  display: flex;
+  align-self: flex-end;
+  background-color: purple;
+}
+.card .container{
+  display:flex;
+  background-color: red;
 }
