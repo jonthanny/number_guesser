@@ -57,8 +57,10 @@ section {
   height: 200px;
   padding: 10px;
   background-color: white;
-  border:solid 4px #8b8b8b;
+  border:solid 2px #8b8b8b;
   color:#6e6e6e;
+  font-weight:300;
+  font-size: 14px;
 }
 
 .card .verses-container{
@@ -68,6 +70,7 @@ section {
   justify-content: space-around;
   flex-grow:1;
   width:100%;
+  padding:0 20px;
   border-bottom: 2px solid #d0d2d3;
 }
 
@@ -75,6 +78,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding:0 5px;
   flex-grow:1;
   width:100%;
   border-top:2px solid #d0d2d3;
@@ -86,5 +90,23 @@ section {
   flex-grow:3;
   align-items: center;
 }
-.card p{
+
+.card .challenger{
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.card .vs{
+  display:flex;
+  padding-bottom:4px;
+  align-self:center;
+  font-size:14px;
+  color:#d0d2d3;
+}
+
+.card h2{
+  font-weight: 300;
+}
+.card .bold{
+  font-weight:700;
 }
