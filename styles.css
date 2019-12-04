@@ -53,14 +53,14 @@ section {
 .card {
   display: flex;
   flex-direction:column;
-  width: 80%;
-  height: 200px;
+  width: 90%;
+  height: 210px;
   padding: 10px;
   background-color: white;
   border:solid 2px #8b8b8b;
   color:#6e6e6e;
   font-weight:300;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .card .verses-container{
@@ -76,7 +76,7 @@ section {
 
 .card .stats-block {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   padding:0 5px;
   flex-grow:1;
@@ -93,20 +93,42 @@ section {
 
 .card .challenger{
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .card .vs{
   display:flex;
   padding-bottom:4px;
   align-self:center;
-  font-size:14px;
-  color:#d0d2d3;
+  font-size:16px;
+  color:#8b8b8b;
 }
 
-.card h2{
+.card h1{
   font-weight: 300;
+  font-size: 28px;
 }
 .card .bold{
   font-weight:700;
+}
+.close-card-button {
+  width: 22px;
+  height: 22px;
+  position: relative;
+  border-radius: 50%;
+  background: #8b8b8b;
+  cursor: pointer;
+}
+.cross{
+  position: absolute;
+  width: 14px;
+  height: 2px;
+  background-color: #d0d2d3;
+  border-radius: 0;
+  left:3px;
+  top: 9px;
+  transform: rotate(45deg);
+}
+.vertical{
+ transform:rotate(-45deg);
 }
