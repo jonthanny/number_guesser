@@ -36,6 +36,7 @@ section {
 .left-side {
   color: #404041;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 50%;
@@ -95,4 +96,44 @@ h4 {
   flex-basis: 50%;
   background-color: #d0d2d3;
   border-left: 1px solid #8b8b8b;
+}
+
+/* || Guess card*/
+.latest-guess{
+  display:flex;
+  flex-direction: column;
+  height:170px;
+  padding:5px;
+}
+.latest-guess h4{
+    align-self: flex-start;
+    display: flex;
+    flex-grow: 1;
+}
+.challenger-container{
+  align-self: stretch;
+  background-color: blue;
+  display:flex;
+  flex-direction:row;
+  flex-grow:3;
+  justify-content: space-around;
+  width:100%;
+
+}
+.challenger-guess-container{
+  align-items: center;
+  background-color: pink;
+  display:flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+.challenger-guess{
+  height:75px;
+  background-color: orange;
+}
+.challenger-guess h1{
+  font-size: 66px;
+  color: #dd1972;
+  margin-top: -8px;
 }
