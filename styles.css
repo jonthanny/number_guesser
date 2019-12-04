@@ -54,23 +54,39 @@ section {
   display: flex;
   flex-direction:column;
   width: 80%;
-  height: 400px;
+  height: 200px;
   padding: 10px;
   background-color: blue;
 }
 
-.card header {
+.card header{
+  height: auto;
   display: flex;
-  align-self: flex-start;
+  align-items: center;
+  justify-content: space-around;
+  flex-grow:1;
+  width:100%;
   background-color: pink;
+  border-bottom: solid black;
 }
 
 .card footer {
   display: flex;
-  align-self: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow:1;
+  width:100%;
   background-color: purple;
+  border-top:solid black;
 }
 .card .container{
   display:flex;
+  flex-direction:column;
+  justify-content: center;
+  flex-grow:3;
+  align-items: center;
   background-color: red;
+}
+.card p{
+  background-color: orange;
 }
