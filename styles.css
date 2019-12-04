@@ -27,11 +27,14 @@ main {
   flex-flow: row;
   height: 100vh;
 }
+
 section {
 }
 
-/* || Left and Right Section Formaating*/
+/* || Left and Right Section Formatting*/
+/* || Left Section Formatting */
 .left-side {
+  color: #404041;
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
@@ -40,6 +43,51 @@ section {
   border-right: 1px solid #8b8b8b;
 }
 
+.left-cards {
+  background-color: white;
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #d0d2d3;
+  width: 95%;
+  height: 130px;
+  margin: 15px auto 0 auto;
+  padding: 10px 15px;
+}
+
+h4 {
+  /* background-color: red; */
+}
+
+.set-range-card {
+}
+
+.form-buttons {
+  color: white;
+  outline: none;
+  background-color: #d0d2d3;
+  padding: 5px 15px;
+  margin: 5px 0 0 0;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 16px;
+  height: 33px;
+}
+
+.input-container {
+  display: inline-block;
+  width: 30%;
+  /* padding: 3px 0 0 0; */
+  margin-right: 20px;
+}
+
+.input-container input {
+  width: 100%;
+  border: 2px solid #d0d2d3;
+  height: 33px;
+}
+
+/* || Right Section Formatting */
 .right-side {
   display: flex;
   justify-content: center;
