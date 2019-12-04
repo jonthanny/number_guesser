@@ -35,7 +35,7 @@ section {
 /* || Left Section Formatting */
 .left-side {
   color: #404041;
-  display: flex;
+  /* display: flex; */
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 50%;
@@ -55,11 +55,35 @@ section {
   padding: 10px 15px;
 }
 
-h4 {
-  /* background-color: red; */
+.set-range-card {
 }
 
-.set-range-card {
+.challenger-card {
+  height: auto;
+}
+
+.input-container {
+  display: inline-block;
+  width: 30%;
+  /* padding: 3px 0 0 0; */
+  margin-right: 20px;
+}
+
+.input-container input {
+  width: 100%;
+  border: 2px solid #d0d2d3;
+  height: 33px;
+}
+
+.challenger-input-container-1,
+.challenger-input-container-2 {
+  display: block;
+  margin: 15px 0;
+  background-color: lightblue;
+}
+
+.challenger-input-container p {
+
 }
 
 .form-buttons {
@@ -74,17 +98,8 @@ h4 {
   height: 33px;
 }
 
-.input-container {
-  display: inline-block;
-  width: 30%;
-  /* padding: 3px 0 0 0; */
-  margin-right: 20px;
-}
-
-.input-container input {
-  width: 100%;
-  border: 2px solid #d0d2d3;
-  height: 33px;
+.form-buttons:hover {
+  background-color: #dd1792;
 }
 
 /* || Right Section Formatting */
