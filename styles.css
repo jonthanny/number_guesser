@@ -56,37 +56,35 @@ section {
   width: 80%;
   height: 200px;
   padding: 10px;
-  background-color: blue;
+  background-color: white;
+  border:solid 4px #8b8b8b;
+  color:#6e6e6e;
 }
 
-.card header{
+.card .verses-container{
   height: auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-grow:1;
   width:100%;
-  background-color: pink;
-  border-bottom: solid black;
+  border-bottom: 2px solid #d0d2d3;
 }
 
-.card footer {
+.card .stats-block {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-grow:1;
   width:100%;
-  background-color: purple;
-  border-top:solid black;
+  border-top:2px solid #d0d2d3;
 }
-.card .container{
+.card .winner-display{
   display:flex;
   flex-direction:column;
   justify-content: center;
   flex-grow:3;
   align-items: center;
-  background-color: red;
 }
 .card p{
-  background-color: orange;
 }
