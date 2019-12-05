@@ -12,6 +12,13 @@ const challenger2 = document.querySelector(".challenger-2");
 const challenger1Guess = document.querySelector(".challenger-1-guess")
 const challenger2Guess = document.querySelector(".challenger-2-guess")
 
+function submitGuess() {
+  challenger1.innerHTML = challenger1NameValue.value;
+  challenger2.innerHTML = challenger2NameValue.value;
+  challenger1Guess.innerHTML = challenger1GuessValue.value;
+  challenger2Guess.innerHTML = challenger2GuessValue.value;
+}
+
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
@@ -48,16 +55,6 @@ function clearForm() {
   clearFormButton.disabled = true;
 }
 
-function submitGuess() {
-
-  // reference the dom elements with the names
-  // get the value from them
-  // assign the value to the corresponding dom name element
-  // reference the dom elements with the guesses
-  // get the value from them
-  // assign the value to the corresponding dom guess element
-
-}
 
 //Event Listeners
 // for(var i=0;i<inputs.legth; i++){
