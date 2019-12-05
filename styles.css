@@ -35,7 +35,6 @@ section {
 /* || Left Section Formatting */
 .left-side {
   color: #404041;
-  /* display: flex; */
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 50%;
@@ -45,7 +44,6 @@ section {
 
 .left-cards {
   background-color: white;
-  /* display: flex; */
   justify-content: space-between;
   align-items: center;
   border: 2px solid #d0d2d3;
@@ -62,10 +60,13 @@ section {
   height: auto;
 }
 
+.challenger-card h4 {
+  margin-top: 15px;
+}
+
 .input-container {
   display: inline-block;
   width: 30%;
-  /* padding: 3px 0 0 0; */
   margin-right: 20px;
 }
 
@@ -77,13 +78,29 @@ section {
 
 .challenger-input-container-1,
 .challenger-input-container-2 {
-  display: block;
-  margin: 15px 0;
-  background-color: lightblue;
+  display: flex;
+  width: 100%;
+  /* margin: 15px 0; */
+  /* padding: 10px; */
 }
 
-.challenger-input-container p {
+.challenger-name-container {
+  /* display: inline-block; */
+flex-basis: 70%;
+flex-grow: 1;
+}
 
+.challenger-guess-container {
+  flex-grow: 1;
+  justify-content: space-between;
+  margin-left: 10px;
+}
+
+.challenger-button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .form-buttons {
@@ -95,11 +112,12 @@ section {
   border-radius: 30px;
   font-weight: 700;
   font-size: 16px;
-  height: 33px;
+  height: auto;
 }
 
 .form-buttons:hover {
   background-color: #dd1792;
+  transition-duration: 300ms;
 }
 
 /* || Right Section Formatting */

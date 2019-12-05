@@ -28,23 +28,39 @@
             <p>Max Range</p>
             <input type="text" name="Max Range">
           </div>
-          <button class="update-button form-buttons">Update</button>
+          <button class="update-button form-buttons">UPDATE</button>
         </div>
         <div class="challenger-card left-cards">
-          <p>The Current Range is 1 to 100</p>
+          <p>The Current Range is
+            <span id="min-range-num">1</span>
+            to 
+            <span id="max-range-num">100</span></p>
+          <h4>Challenger 1</h4>
           <div class="input-container challenger-input-container-1">
-            <h4>Challenger 1</h4>
-            <p>Name</p>
-            <input type="text" name="name-input-1">
-            <p>Guess</p>
-            <input type="text" name="guess-input-1">
+            <div class="challenger-name-container">
+              <p>Name</p>
+              <input type="text" name="name-input-1">
+            </div>
+            <div class="challenger-guess-container">
+              <p>Guess</p>
+              <input type="text" name="guess-input-1">
+            </div>
           </div>
+          <h4>Challenger 2</h4>
           <div class="input-container challenger-input-container-2">
-            <h4>Challenger 2</h4>
-            <p>Name</p>
-            <input type="text" name="name-input-1">
-            <p>Guess</p>
-            <input type="text" name="guess-input-1">
+            <div class="challenger-name-container">
+              <p>Name</p>
+              <input type="text" name="name-input-1">
+            </div>
+            <div class="challenger-guess-container">
+              <p>Guess</p>
+              <input type="text" name="guess-input-1">
+            </div>
+          </div>
+          <div class="challenger-button-container">
+            <button class="form-buttons challenger-button">SUBMIT GUESS</button>
+            <button class="form-buttons challenger-button">RESET GAME</button>
+            <button class="form-buttons challenger-button">CLEAR FORM</button>
           </div>
         </div>
 
