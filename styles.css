@@ -47,7 +47,6 @@ h4 {
 /* || Left Section Formatting */
 .left-side {
   color: #404041;
-  display: flex;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 50%;
@@ -57,7 +56,6 @@ h4 {
 
 .left-cards {
   background-color: white;
-  /* display: flex; */
   justify-content: space-between;
   align-items: center;
   border: 2px solid #d0d2d3;
@@ -70,6 +68,60 @@ h4 {
 .set-range-card {
 }
 
+.challenger-card {
+  height: auto;
+}
+
+.challenger-card h4 {
+  margin-top: 15px;
+}
+
+#min-range-num,
+#max-range-num {
+  font-weight: bold;
+  /* border-bottom: 2px solid #404041; */
+  text-decoration: underline;
+}
+
+.input-container {
+  display: inline-block;
+  width: 30%;
+  margin-right: 20px;
+}
+
+.input-container input {
+  width: 100%;
+  border: 2px solid #d0d2d3;
+  height: 33px;
+}
+
+.challenger-input-container-1,
+.challenger-input-container-2 {
+  display: flex;
+  width: 100%;
+  /* margin: 15px 0; */
+  /* padding: 10px; */
+}
+
+.challenger-name-container {
+  /* display: inline-block; */
+flex-basis: 70%;
+flex-grow: 1;
+}
+
+.challenger-guess-container {
+  flex-grow: 1;
+  justify-content: space-between;
+  margin-left: 10px;
+}
+
+.challenger-button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 25px;
+}
+
 .form-buttons {
   color: white;
   outline: none;
@@ -79,20 +131,12 @@ h4 {
   border-radius: 30px;
   font-weight: 700;
   font-size: 16px;
-  height: 33px;
+  height: auto;
 }
 
-.input-container {
-  display: inline-block;
-  width: 30%;
-  /* padding: 3px 0 0 0; */
-  margin-right: 20px;
-}
-
-.input-container input {
-  width: 100%;
-  border: 2px solid #d0d2d3;
-  height: 33px;
+.form-buttons:hover {
+  background-color: #dd1792;
+  transition-duration: 300ms;
 }
 
 /* || Right Section Formatting */
