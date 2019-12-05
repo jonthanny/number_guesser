@@ -3,6 +3,10 @@ const inputs = document.querySelectorAll(".input-challenger");
 const submitButton = document.querySelector("#submit-button");
 const resetButton = document.querySelector("#reset-button");
 const clearFormButton = document.querySelector("#clear-form-button");
+const challenger1 = document.querySelector(".challenger-1");
+const challenger2 = document.querySelector(".challenger-2");
+const challenger1Guess = document.querySelector(".challenger-1-guess")
+const challenger2Guess = document.querySelector(".challenger-2-guess")
 
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
@@ -40,6 +44,16 @@ function clearForm() {
   clearFormButton.disabled = true;
 }
 
+function submitGuess() {
+  // reference the dom elements with the names
+  // get the value from them
+  // assign the value to the corresponding dom name element
+  // reference the dom elements with the guesses
+  // get the value from them
+  // assign the value to the corresponding dom guess element
+
+}
+
 //Event Listeners
 // for(var i=0;i<inputs.legth; i++){
 //   input[i].addEventListener("input",checkFormInputs);
@@ -47,6 +61,8 @@ function clearForm() {
 //array.forEach(function(input){input.addEventListener("focusout",checkFormInputs)}
 inputs.forEach((input) => addEventListener("input", checkFormInputs));
 clearFormButton.addEventListener("click", clearForm);
+
+submitButton.addEventListener("click", submitGuess);
 
 // debugger;
 window.onload = checkFormInputs();
