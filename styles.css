@@ -98,42 +98,64 @@ h4 {
   border-left: 1px solid #8b8b8b;
 }
 
-/* || Guess card*/
+/* || Latest Guess card*/
 .latest-guess{
-  display:flex;
+  display: flex;
   flex-direction: column;
-  height:170px;
-  padding:5px;
+  height: 170px;
+  padding: 5px;
 }
+
 .latest-guess h4{
     align-self: flex-start;
     display: flex;
     flex-grow: 1;
+    padding-left: 5px;
 }
+
 .challenger-container{
   align-self: stretch;
-  background-color: blue;
-  display:flex;
-  flex-direction:row;
-  flex-grow:3;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 3;
+  height: 170px;
   justify-content: space-around;
-  width:100%;
-
 }
-.challenger-guess-container{
+
+.challenger-guess-container {
   align-items: center;
-  background-color: pink;
+  color:#8b8b8b;
   display:flex;
   flex-direction: column;
   flex-grow: 1;
+  font-size: 14px;
   justify-content: space-between;
+  padding-bottom: 4px;
+  padding-top: 1px;
 }
-.challenger-guess{
-  height:75px;
-  background-color: orange;
+
+.challenger-guess {
+  height: 72px;
+  margin-bottom: -6px;
 }
-.challenger-guess h1{
-  font-size: 66px;
+
+.challenger-guess h1 {
   color: #dd1972;
-  margin-top: -8px;
+  font-size: 66px;
+  font-weight: 800;
+  margin-top: -12px;
+}
+
+.guess-help-text {
+  font-size: 17px;
+}
+
+.bold {
+  color: #6e6e6e;
+  font-weight: 700;
+}
+
+.divider {
+  border-left: 1px solid #d0d2d3;
+  margin-top: -18px;
 }
