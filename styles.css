@@ -36,7 +36,8 @@ section {
   font-weight: 300;
   font-size: 28px;
 }
-.bold{
+.bold {
+  color: #6e6e6e;
   font-weight: 700;
 }
 h4 {
@@ -162,11 +163,6 @@ h4 {
   font-size: 17px;
 }
 
-.bold {
-  color: #6e6e6e;
-  font-weight: 700;
-}
-
 .divider {
   border-left: 1px solid #d0d2d3;
   margin-top: -18px;
@@ -216,15 +212,15 @@ h4 {
 }
 
 .previous-game-card .challenger{
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .previous-game-card .vs{
   align-self: center;
   color: #8b8b8b;
   display: flex;
-  font-size: 16px;
+  font-size: 14px;
   padding-bottom: 4px;
 }
 
