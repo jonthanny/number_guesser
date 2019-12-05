@@ -7,16 +7,13 @@ const clearFormButton = document.querySelector("#clear-form-button");
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
-
-  //Loop through inputs[] check to see if anything is blank.
-  //When canClear is false button appears
-  submitButtonEnable();
+  checkSubmitButtonInputs();
   clearFormButtonEnable();
-
+  //Add form Validation for numbers
 }
 
-function submitButtonEnable(){
-  //Starts as true. Checks
+//Function to check inputs to see if they are all filled in. Enables button.
+function checkSubmitButtonInputs(){
   var canSubmit = true;
   for (var i = 0; i < inputs.length; i++) {
     if (inputs[i].value.length == 0) {
@@ -40,13 +37,17 @@ function clearForm() {
   for (var i = 0; i < inputs.length; i++) {
     inputs[i].value = "";
   }
+  clearFormButton.disabled = true;
 }
 
 //Event Listeners
+// for(var i=0;i<inputs.legth; i++){
+//   input[i].addEventListener("input",checkFormInputs);
+// }
 //array.forEach(function(input){input.addEventListener("focusout",checkFormInputs)}
 inputs.forEach((input) => addEventListener("input", checkFormInputs));
 clearFormButton.addEventListener("click", clearForm);
 
-
+// debugger;
 window.onload = checkFormInputs();
 // module.exports = Card;
