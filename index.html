@@ -39,28 +39,28 @@
           <div class="input-container challenger-input-container-1">
             <div class="challenger-name-container">
               <p>Name</p>
-              <input type="text" name="name-input-1">
+              <input type="text" name="name-input-1" class="input-challenger">
             </div>
             <div class="challenger-guess-container">
               <p>Guess</p>
-              <input type="text" name="guess-input-1">
+              <input type="text" name="guess-input-1" class="input-challenger">
             </div>
           </div>
           <h4>Challenger 2</h4>
           <div class="input-container challenger-input-container-2">
             <div class="challenger-name-container">
               <p>Name</p>
-              <input type="text" name="name-input-1">
+              <input type="text" name="name-input-1" class="input-challenger">
             </div>
             <div class="challenger-guess-container">
               <p>Guess</p>
-              <input type="text" name="guess-input-1">
+              <input type="text" name="guess-input-1" class="input-challenger">
             </div>
           </div>
           <div class="challenger-button-container">
-            <button class="form-buttons challenger-button">SUBMIT GUESS</button>
-            <button class="form-buttons challenger-button">RESET GAME</button>
-            <button class="form-buttons challenger-button">CLEAR FORM</button>
+            <button class="form-buttons challenger-button" id="submit-button"disabled>SUBMIT GUESS</button>
+            <button class="form-buttons challenger-button" id="reset-button" disabled>RESET GAME</button>
+            <button class="form-buttons challenger-button" id="clear-form-button"disabled>CLEAR FORM</button>
           </div>
         </div>
        <div class="latest-guess left-cards">
@@ -126,5 +126,6 @@
         </div>
       </section>
     </main>
+    <script src="main.js"></script>
   </body>
 </html>
