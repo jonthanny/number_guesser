@@ -1,0 +1,15 @@
+{
+  "name": "intro-testing",
+  "version": "1.0.0",
+  "description": "A playground to start unit testing with mocha and chai",
+  "main": "tweet-test.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Turing School of Software & Design",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
+  }
+}
