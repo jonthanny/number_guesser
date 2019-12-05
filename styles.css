@@ -139,10 +139,12 @@ flex-grow: 1;
   font-size: 16px;
   height: auto;
 }
+
 .form-buttons:disabled {
   background:#d0d2d3;
 }
-.form-buttons:hover {
+
+.form-buttons:hover:enabled {
   background-color: #dd1792;
   transition-duration: 300ms;
 }
