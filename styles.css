@@ -64,6 +64,13 @@ section {
   margin-top: 15px;
 }
 
+#min-range-num,
+#max-range-num {
+  font-weight: bold;
+  /* border-bottom: 2px solid #404041; */
+  text-decoration: underline;
+}
+
 .input-container {
   display: inline-block;
   width: 30%;
@@ -98,9 +105,9 @@ flex-grow: 1;
 
 .challenger-button-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .form-buttons {
