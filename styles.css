@@ -41,18 +41,14 @@ section {
   font-weight: 700;
 }
 h4 {
-  /* background-color: red; */
 }
 
 /* || Left and Right Section Formatting*/
 /* || Left Section Formatting */
 .left-side {
   color: #404041;
-<<<<<<< HEAD
   display: flex;
   flex-direction: column;
-=======
->>>>>>> master
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 50%;
