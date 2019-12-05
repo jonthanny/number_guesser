@@ -31,6 +31,18 @@ main {
 section {
 }
 
+/* || Text Formatting*/
+.previous-game-card h1{
+  font-weight: 300;
+  font-size: 28px;
+}
+.bold{
+  font-weight: 700;
+}
+h4 {
+  /* background-color: red; */
+}
+
 /* || Left and Right Section Formatting*/
 /* || Left Section Formatting */
 .left-side {
@@ -54,10 +66,6 @@ section {
   height: 130px;
   margin: 15px auto 0 auto;
   padding: 10px 15px;
-}
-
-h4 {
-  /* background-color: red; */
 }
 
 .set-range-card {
@@ -91,9 +99,13 @@ h4 {
 /* || Right Section Formatting */
 .right-side {
   display: flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: center;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 50%;
+  padding-top:10px;
   background-color: #d0d2d3;
   border-left: 1px solid #8b8b8b;
 }
@@ -158,4 +170,91 @@ h4 {
 .divider {
   border-left: 1px solid #d0d2d3;
   margin-top: -18px;
+}
+/* || Stat previous-game- cards*/
+.previous-game-card {
+  background-color: white;
+  border: solid 2px #8b8b8b;
+  color: #6e6e6e;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  height: 210px;
+  margin:4px 0;
+  min-width: 425px;
+  padding: 10px;
+  width: 90%;
+}
+
+.previous-game-card .verses-container{
+  align-items: center;
+  border-bottom: 2px solid #d0d2d3;
+  display: flex;
+  flex-grow: 1;
+  height: auto;
+  justify-content: space-around;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.previous-game-card .stats-block {
+  align-items: flex-end;
+  border-top: 2px solid #d0d2d3;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding: 0 5px;
+  width: 100%;
+}
+
+.previous-game-card .winner-display{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+  justify-content: center;
+}
+
+.previous-game-card .challenger{
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.previous-game-card .vs{
+  align-self: center;
+  color: #8b8b8b;
+  display: flex;
+  font-size: 16px;
+  padding-bottom: 4px;
+}
+
+
+/* || CSS Styling for Close Button*/
+.close-card-button {
+  background: #8b8b8b;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 22px;
+  position: relative;
+  width: 22px;
+}
+.cross{
+  background-color: #d0d2d3;
+  border-radius: 0;
+  height: 2px;
+  left: 3px;
+  position: absolute;
+  top: 9px;
+  transform: rotate(45deg);
+  width: 14px;
+}
+.vertical{
+ transform: rotate(-45deg);
+}
+.close-card-button:hover {
+  background-color: #d0d2d3;
+}
+
+.close-card-button:hover .cross {
+  background-color: #8b8b8b;
 }
