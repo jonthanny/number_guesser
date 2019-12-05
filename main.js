@@ -3,6 +3,10 @@ const inputs = document.querySelectorAll(".input-challenger");
 const submitButton = document.querySelector("#submit-button");
 const resetButton = document.querySelector("#reset-button");
 const clearFormButton = document.querySelector("#clear-form-button");
+const challenger1NameValue = document.querySelector("#challenger-1-name");
+const challenger2NameValue = document.querySelector("#challenger-2-name");
+const challenger1GuessValue = document.querySelector("#challenger-1-guess");
+const challenger2GuessValue = document.querySelector("#challenger-2-guess");
 const challenger1 = document.querySelector(".challenger-1");
 const challenger2 = document.querySelector(".challenger-2");
 const challenger1Guess = document.querySelector(".challenger-1-guess")
@@ -45,6 +49,7 @@ function clearForm() {
 }
 
 function submitGuess() {
+
   // reference the dom elements with the names
   // get the value from them
   // assign the value to the corresponding dom name element
