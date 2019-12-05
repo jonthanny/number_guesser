@@ -4,26 +4,36 @@ const submitButton = document.querySelector("#submit-button");
 const resetButton = document.querySelector("#reset-button");
 const clearFormButton = document.querySelector("#clear-form-button");
 
+// checkComplete() is called whenever a input field is changed.
+// This enables and disables the submitButton and clearFormButton variables
 function checkComplete() {
   var canSubmit = true;
   var canClear = false;
+  //Loop through inputs[] check to see if anything is blank.
+  //When canClear is false button appears
+
+  //[asd,asdf,asdf,asdf]
   for (var i = 0; i < inputs.length; i++) {
     if (inputs[i].value.length == 0) {
       canSubmit = false;
+    }else if (canClear == false) {
+      canClear = true;
     }
-    if(inputs[i].value.length!=0 && canClear==false){
-      canClear=true;
-    }
+    submitButton.disabled = !canSubmit;
+    clearFormButton.disabled = !canClear;
   }
-  submitButton.disabled = !canSubmit;
-  clearFormButton.disabled = !canClear;
 }
-function clearForm(){
+//Clears the inputs from the form
+function clearForm() {
   for (var i = 0; i < inputs.length; i++) {
-    inputs[i].value="";
+    inputs[i].value = "";
   }
 }
+
+//Event Listeners
 //array.forEach(function(input){input.addEventListener("focusout",checkComplete)}
 inputs.forEach((input) => addEventListener("input", checkComplete));
-clearFormButton.addEventListener("click",clearForm);
+clearFormButton.addEventListener("click", clearForm);
+
+
 window.onload = checkComplete();
