@@ -2,6 +2,7 @@
 const inputs = document.querySelectorAll(".input-challenger");
 const submitButton = document.querySelector("#submit-button");
 const resetButton = document.querySelector("#reset-button");
+const clearFormButton = document.querySelector("#clear-form-button");
 
 function checkComplete() {
   var canSubmit = true;
@@ -15,9 +16,14 @@ function checkComplete() {
     }
   }
   submitButton.disabled = !canSubmit;
-  resetButton.disabled = !canClear;
+  clearFormButton.disabled = !canClear;
 }
-
+function clearForm(){
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].value="";
+  }
+}
 //array.forEach(function(input){input.addEventListener("focusout",checkComplete)}
 inputs.forEach((input) => addEventListener("input", checkComplete));
+clearFormButton.addEventListener("click",clearForm);
 window.onload = checkComplete();
