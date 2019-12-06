@@ -1,25 +1,29 @@
-//Challenger Form Disable buttons
-const inputs = document.querySelectorAll(".input-challenger");
-const submitButton = document.querySelector("#submit-button");
-const resetButton = document.querySelector("#reset-button");
-const updateButton = document.querySelector(".update-button");
-const clearFormButton = document.querySelector("#clear-form-button");
-const challenger1NameValue = document.querySelector("#challenger-1-name");
-const challenger2NameValue = document.querySelector("#challenger-2-name");
-const challenger1GuessValue = document.querySelector("#challenger-1-guess");
-const challenger2GuessValue = document.querySelector("#challenger-2-guess");
+//Challenger Varibales Could be combined to a class
 const challenger1 = document.querySelector(".challenger-1");
-const challenger2 = document.querySelector(".challenger-2");
 const challenger1Guess = document.querySelector(".challenger-1-guess");
+const challenger1GuessValue = document.querySelector("#challenger-1-guess");
+const challenger1NameValue = document.querySelector("#challenger-1-name");
+const challenger2 = document.querySelector(".challenger-2");
 const challenger2Guess = document.querySelector(".challenger-2-guess");
+const challenger2GuessValue = document.querySelector("#challenger-2-guess");
+const challenger2NameValue = document.querySelector("#challenger-2-name");
 const guessHelpText = document.querySelectorAll(".guess-help-text");
+const clearFormButton = document.querySelector("#clear-form-button");
+//
+const inputs = document.querySelectorAll(".input-challenger");
+//Button DOM variables
+const resetButton = document.querySelector("#reset-button");
+const submitButton = document.querySelector("#submit-button");
+const updateButton = document.querySelector(".update-button");
 var correctGuess = 101;
-var minInput = document.querySelector("#min-input-range");
-var maxInput = document.querySelector("#max-input-range");
-var minElement = document.querySelector("#min-range-num");
 var maxElement = document.querySelector("#max-range-num");
+const maxInput = document.querySelector("#max-input-range");
+var minElement = document.querySelector("#min-range-num");
+const minInput = document.querySelector("#min-input-range");
 
-
+//grabs the minimum and maximum values of the DOM input values
+//Updates min and max visually
+//Passes minValue and maxValue as arguments to resetGame
 function updateMinMax(){
   minElement.innerHTML = minInput.value;
   maxElement.innerHTML = maxInput.value;
@@ -43,7 +47,7 @@ function submitGuess() {
   checkFormInputs();
 }
 
-//Refactored function
+//Check Guess checks the challengers guesses and iterates through the array. Then the
 function checkGuess(challengerGuesses) {
   for(var i=0; i<challengerGuesses.length; i++){
     var challengerValue = parseInt(challengerGuesses[i].value);
@@ -55,13 +59,6 @@ function checkGuess(challengerGuesses) {
       guessHelpText[i].innerHTML = "BOOM!";
     }
   }
-  // if (parseInt(challenger1GuessValue.value) < correctGuess) {
-  //   guessHelpText1.innerHTML = "that's too low";
-  // } else if (parseInt(challenger1GuessValue.value) > correctGuess) {
-  //   guessHelpText1.innerHTML = "that's too high";
-  // } else {
-  //   guessHelpText1.innerHTML = "BOOM!";
-  // }
 }
 
 // checkFormInputs() is called whenever a input field is changed.
@@ -74,6 +71,7 @@ function checkFormInputs() {
   //Add form Validation for numbers
 }
 
+//Checks the associated button form to make sure the input has something in it
 function checkButtonInputs(inputsToCheck,button){
   var canSubmit = true;
   for (var i = 0; i < inputsToCheck.length; i++) {
@@ -84,6 +82,7 @@ function checkButtonInputs(inputsToCheck,button){
   button.disabled = !canSubmit;
 }
 
+//Checks the associated button form to make sure the input has something in it
 function checkClearFormButtonInputs(){
   var canClear = false;
   for (var i = 0; i < inputs.length; i++) {
@@ -93,6 +92,7 @@ function checkClearFormButtonInputs(){
   }
   clearFormButton.disabled = !canClear;
 }
+
 //Clears the inputs from the form
 function clearForm(clearInputs) {
   for (var i = 0; i < clearInputs.length; i++) {
@@ -100,8 +100,6 @@ function clearForm(clearInputs) {
   }
   clearFormButton.disabled = true;
 }
-
-
 
 //Event Listeners
 // for(var i=0;i<inputs.legth; i++){
