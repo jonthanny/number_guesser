@@ -1,3 +1,23 @@
+class Game {
+  constructor(){
+    this.curMin = 1;
+    this.curMax = 100;
+    this.startTime = 0;
+    this.endTime= 1;
+    this.timeElapsed=0;
+    this.currentCorrectNumber = 0;
+    this.gameNumber=0;
+    this.challenger1='';
+    this.challenger2='';
+    this.winner='';
+  }
+  timeElapse(){
+    this.timeElapsed = this.endTime-this.startTime;
+  }
+  newRandomNumber(min,max){
+    this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+}
 //Challenger Varibales Could be combined to a class
 const challenger1 = document.querySelector(".challenger-1");
 const challenger1Guess = document.querySelector(".challenger-1-guess");
@@ -15,26 +35,28 @@ const inputs = document.querySelectorAll(".input-challenger");
 const resetButton = document.querySelector("#reset-button");
 const submitButton = document.querySelector("#submit-button");
 const updateButton = document.querySelector(".update-button");
-var correctGuess = 101;
+var currentCorrectNumber = 101;
 var maxElement = document.querySelector("#max-range-num");
 const maxInput = document.querySelector("#max-input-range");
 var minElement = document.querySelector("#min-range-num");
 const minInput = document.querySelector("#min-input-range");
+var currentGame = new Game;
+var pastGames =[];
 
 //grabs the minimum and maximum values of the DOM input values
 //Updates min and max visually
 //Passes minValue and maxValue as arguments to resetGame
 function updateMinMax(){
-  minElement.innerHTML = minInput.value;
-  maxElement.innerHTML = maxInput.value;
-  var minValue = parseInt(minInput.value);
-  var maxValue = parseInt(maxInput.value);
-  resetGame(minValue,maxValue);
+  currentGame.curMin = parseInt(minInput.value);
+  currentGame.curMax = parseInt(maxInput.value);
+  minElement.innerHTML = currentGame.curMin;
+  maxElement.innerHTML =currentGame.curMax;
+  currentGame.newRandomNumber(currentGame.curMin,currentGame.curMax);
 }
-
-function resetGame(min,max) {
-  correctGuess = Math.floor(Math.random() * (max - min + 1)) + min;
-}
+//Depreciated in Refactor of Game to Class
+// function resetGame(min,max) {
+//   correctGuess = Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
 function submitGuess() {
   challenger1.innerHTML = challenger1NameValue.value;
@@ -51,9 +73,9 @@ function submitGuess() {
 function checkGuess(challengerGuesses) {
   for(var i=0; i<challengerGuesses.length; i++){
     var challengerValue = parseInt(challengerGuesses[i].value);
-    if(challengerValue<correctGuess){
+    if(challengerValue<currentGame.currentCorrectNumber){
       guessHelpText[i].innerHTML = "that's too low";
-    }else if (challengerValue > correctGuess) {
+    }else if (challengerValue > currentGame.currentCorrectNumber) {
       guessHelpText[i].innerHTML = "that's too high";
     } else {
       guessHelpText[i].innerHTML = "BOOM!";
@@ -64,7 +86,6 @@ function checkGuess(challengerGuesses) {
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
-  checkSubmitButtonInputs();
   checkClearFormButtonInputs();
   checkButtonInputs(inputs,submitButton);
   checkButtonInputs([minInput,maxInput],updateButton);
@@ -114,7 +135,6 @@ submitButton.addEventListener("click", submitGuess);
 updateButton.addEventListener("click", updateMinMax);
 // debugger;
 window.onload = function() {
-  resetGame(1,100);
+  currentGame.newRandomNumber(currentGame.curMin,currentGame.curMax)
   checkFormInputs();
 }
-// module.exports = Card;
