@@ -79,16 +79,15 @@ function checkGuess(challengerGuesses) {
       guessHelpText[i].innerHTML = "that's too high";
     } else {
       guessHelpText[i].innerHTML = "BOOM!";
-
       if (i==0) {
          currentGame.winner=challenger1NameValue.value;
       }else {
         currentGame.winner=challenger2NameValue.value;
       }
-      // switch(i){
-      //   case 0:
+      // switch(i==0){
+      //   case true:
       //     currentGame.winner=challenger1NameValue.value;
-      //   case 1:
+      //   case false:
       //     currentGame.winner=challenger2NameValue.value;
       // }
       gameWon();
@@ -102,6 +101,7 @@ function checkGuess(challengerGuesses) {
 //+Initialize new game populate challengers from last game RND 2
 function gameWon(){
   addCard();
+  currentGame = new Game;
 }
 
 function addCard(){
