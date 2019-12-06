@@ -69,6 +69,7 @@ function checkGuess(challengerGuesses) {
 function checkFormInputs() {
   checkSubmitButtonInputs();
   checkClearFormButtonInputs();
+  checkButtonInputs(inputs,submitButton);
   checkButtonInputs([minInput,maxInput],updateButton);
   //Add form Validation for numbers
 }
@@ -81,26 +82,6 @@ function checkButtonInputs(inputsToCheck,button){
     }
   }
   button.disabled = !canSubmit;
-}
-
-function checkUpdateButtonInputs(inputs){
-  var canSubmit = true;
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].value.length == 0) {
-      canSubmit = false;
-    }
-  }
-  updateButton.disabled = !canSubmit;
-}
-//Function to check inputs to see if they are all filled in. Enables button.
-function checkSubmitButtonInputs(){
-  var canSubmit = true;
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].value.length == 0) {
-      canSubmit = false;
-    }
-  }
-  submitButton.disabled = !canSubmit;
 }
 
 function checkClearFormButtonInputs(){
