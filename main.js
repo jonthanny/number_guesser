@@ -13,6 +13,12 @@ const challenger1Guess = document.querySelector(".challenger-1-guess");
 const challenger2Guess = document.querySelector(".challenger-2-guess");
 const guessHelpText = document.querySelectorAll(".guess-help-text");
 var correctGuess = 101;
+var min = null;
+var max = null;
+var minElement = document.querySelector("#min-element-range");
+var maxElement = document.querySelector("#max-element-range");
+var minInput = document.querySelector("#min-input-range");
+var maxInput = document.querySelector("#max-input-range");
 
 function submitGuess() {
   challenger1.innerHTML = challenger1NameValue.value;
