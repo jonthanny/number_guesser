@@ -11,8 +11,7 @@ const challenger1 = document.querySelector(".challenger-1");
 const challenger2 = document.querySelector(".challenger-2");
 const challenger1Guess = document.querySelector(".challenger-1-guess");
 const challenger2Guess = document.querySelector(".challenger-2-guess");
-const guessHelpText1 = document.querySelector("#guess-help-text-1");
-const guessHelpText2 = document.querySelector("#guess-help-text-2");
+const guessHelpText = document.querySelectorAll(".guess-help-text");
 const correctGuess = 4;
 
 function submitGuess() {
@@ -20,15 +19,31 @@ function submitGuess() {
   challenger2.innerHTML = challenger2NameValue.value;
   challenger1Guess.innerHTML = challenger1GuessValue.value;
   challenger2Guess.innerHTML = challenger2GuessValue.value;
-  var clearGuess = [challenger1GuessValue, challenger2GuessValue];
-  clearForm(clearGuess);
+  var challengerGuesses = [challenger1GuessValue, challenger2GuessValue];
+  checkGuess(challengerGuesses);
+  clearForm(challengerGuesses);
   checkFormInputs();
 }
 
-function checkGuess() {
-  if (challenger1NameValue.value; < correctGuess) {
-
+//Refactored function
+function checkGuess(challengerGuesses) {
+  for(var i=0; i<challengerGuesses.length; i++){
+    var challengerValue = parseInt(challengerGuesses[i].value);
+    if(challengerValue<correctGuess){
+      guessHelpText[i].innerHTML = "that's too low";
+    }else if (challengerValue > correctGuess) {
+      guessHelpText[i].innerHTML = "that's too high";
+    } else {
+      guessHelpText[i].innerHTML = "BOOM!";
+    }
   }
+  // if (parseInt(challenger1GuessValue.value) < correctGuess) {
+  //   guessHelpText1.innerHTML = "that's too low";
+  // } else if (parseInt(challenger1GuessValue.value) > correctGuess) {
+  //   guessHelpText1.innerHTML = "that's too high";
+  // } else {
+  //   guessHelpText1.innerHTML = "BOOM!";
+  // }
 }
 
 // checkFormInputs() is called whenever a input field is changed.
