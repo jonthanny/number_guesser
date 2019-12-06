@@ -2,6 +2,7 @@
 const inputs = document.querySelectorAll(".input-challenger");
 const submitButton = document.querySelector("#submit-button");
 const resetButton = document.querySelector("#reset-button");
+const updateButton = document.querySelector(".update-button");
 const clearFormButton = document.querySelector("#clear-form-button");
 const challenger1NameValue = document.querySelector("#challenger-1-name");
 const challenger2NameValue = document.querySelector("#challenger-2-name");
@@ -13,6 +14,23 @@ const challenger1Guess = document.querySelector(".challenger-1-guess");
 const challenger2Guess = document.querySelector(".challenger-2-guess");
 const guessHelpText = document.querySelectorAll(".guess-help-text");
 var correctGuess = 101;
+var minInput = document.querySelector("#min-input-range");
+var maxInput = document.querySelector("#max-input-range");
+var minElement = document.querySelector("#min-range-num");
+var maxElement = document.querySelector("#max-range-num");
+
+
+function updateMinMax(){
+  minElement.innerHTML = minInput.value;
+  maxElement.innerHTML = maxInput.value;
+  var minValue = parseInt(minInput.value);
+  var maxValue = parseInt(maxInput.value);
+  resetGame(minValue,maxValue);
+}
+
+function resetGame(min,max) {
+  correctGuess = Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function submitGuess() {
   challenger1.innerHTML = challenger1NameValue.value;
@@ -51,9 +69,19 @@ function checkGuess(challengerGuesses) {
 function checkFormInputs() {
   checkSubmitButtonInputs();
   checkClearFormButtonInputs();
+  checkUpdateButtonInputs([minInput,maxInput]);
   //Add form Validation for numbers
 }
 
+function checkUpdateButtonInputs(inputs){
+  var canSubmit = true;
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].value.length == 0) {
+      canSubmit = false;
+    }
+  }
+  updateButton.disabled = !canSubmit;
+}
 //Function to check inputs to see if they are all filled in. Enables button.
 function checkSubmitButtonInputs(){
   var canSubmit = true;
@@ -82,9 +110,7 @@ function clearForm(clearInputs) {
   clearFormButton.disabled = true;
 }
 
-function resetGame() {
-  correctGuess = Math.floor(Math.random() * 100);
-}
+
 
 //Event Listeners
 // for(var i=0;i<inputs.legth; i++){
@@ -92,15 +118,14 @@ function resetGame() {
 // }
 //array.forEach(function(input){input.addEventListener("focusout",checkFormInputs)}
 inputs.forEach((input) => addEventListener("input", checkFormInputs));
-clearFormButton.addEventListener("click", function(){
+clearFormButton.addEventListener("click", function() {
   clearForm(inputs);
 });
-
 submitButton.addEventListener("click", submitGuess);
-
+updateButton.addEventListener("click", updateMinMax);
 // debugger;
 window.onload = function() {
-  resetGame();
+  resetGame(1,100);
   checkFormInputs();
 }
 // module.exports = Card;
