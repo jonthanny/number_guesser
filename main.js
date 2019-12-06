@@ -6,7 +6,7 @@ class Game {
     this.endTime= 1;
     this.timeElapsed=0;
     this.currentCorrectNumber = 0;
-    this.gameNumber=0;
+    this.gameIndex=0;
     this.challenger1='';
     this.challenger2='';
     this.winner='';
@@ -79,10 +79,18 @@ function checkGuess(challengerGuesses) {
       guessHelpText[i].innerHTML = "that's too high";
     } else {
       guessHelpText[i].innerHTML = "BOOM!";
+      gameWon();
     }
   }
 }
 
+//What happens when the game is won?
+//+update currentGame
+//+create card
+//+Initialize new game populate challengers from last game RND 2
+function gameWon(){
+
+}
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
