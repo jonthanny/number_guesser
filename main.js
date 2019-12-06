@@ -12,7 +12,7 @@ const challenger2 = document.querySelector(".challenger-2");
 const challenger1Guess = document.querySelector(".challenger-1-guess");
 const challenger2Guess = document.querySelector(".challenger-2-guess");
 const guessHelpText = document.querySelectorAll(".guess-help-text");
-const correctGuess = 4;
+var correctGuess = 101;
 
 function submitGuess() {
   challenger1.innerHTML = challenger1NameValue.value;
@@ -82,6 +82,9 @@ function clearForm(clearInputs) {
   clearFormButton.disabled = true;
 }
 
+function resetGame() {
+  correctGuess = Math.floor(Math.random() * 100);
+}
 
 //Event Listeners
 // for(var i=0;i<inputs.legth; i++){
@@ -96,5 +99,8 @@ clearFormButton.addEventListener("click", function(){
 submitButton.addEventListener("click", submitGuess);
 
 // debugger;
-window.onload = checkFormInputs();
+window.onload = function() {
+  resetGame();
+  checkFormInputs();
+}
 // module.exports = Card;
