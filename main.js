@@ -69,8 +69,18 @@ function checkGuess(challengerGuesses) {
 function checkFormInputs() {
   checkSubmitButtonInputs();
   checkClearFormButtonInputs();
-  checkUpdateButtonInputs([minInput,maxInput]);
+  checkButtonInputs([minInput,maxInput],updateButton);
   //Add form Validation for numbers
+}
+
+function checkButtonInputs(inputsToCheck,button){
+  var canSubmit = true;
+  for (var i = 0; i < inputsToCheck.length; i++) {
+    if (inputsToCheck[i].value.length == 0) {
+      canSubmit = false;
+    }
+  }
+  button.disabled = !canSubmit;
 }
 
 function checkUpdateButtonInputs(inputs){
