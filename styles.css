@@ -13,13 +13,13 @@
 
 header {
   background-color: #404041;
-  height: 15vh;
+  height: 120px;
   color: white;
   text-align: center;
 }
 
 .logo-emphasis {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 main {
