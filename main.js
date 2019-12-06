@@ -9,21 +9,33 @@ const challenger1GuessValue = document.querySelector("#challenger-1-guess");
 const challenger2GuessValue = document.querySelector("#challenger-2-guess");
 const challenger1 = document.querySelector(".challenger-1");
 const challenger2 = document.querySelector(".challenger-2");
-const challenger1Guess = document.querySelector(".challenger-1-guess")
-const challenger2Guess = document.querySelector(".challenger-2-guess")
+const challenger1Guess = document.querySelector(".challenger-1-guess");
+const challenger2Guess = document.querySelector(".challenger-2-guess");
+const guessHelpText1 = document.querySelector("#guess-help-text-1");
+const guessHelpText2 = document.querySelector("#guess-help-text-2");
+const correctGuess = 4;
 
 function submitGuess() {
   challenger1.innerHTML = challenger1NameValue.value;
   challenger2.innerHTML = challenger2NameValue.value;
   challenger1Guess.innerHTML = challenger1GuessValue.value;
   challenger2Guess.innerHTML = challenger2GuessValue.value;
+  var clearGuess = [challenger1GuessValue, challenger2GuessValue];
+  clearForm(clearGuess);
+  checkFormInputs();
+}
+
+function checkGuess() {
+  if (challenger1NameValue.value; < correctGuess) {
+
+  }
 }
 
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
   checkSubmitButtonInputs();
-  clearFormButtonEnable();
+  checkClearFormButtonInputs();
   //Add form Validation for numbers
 }
 
@@ -38,7 +50,7 @@ function checkSubmitButtonInputs(){
   submitButton.disabled = !canSubmit;
 }
 
-function clearFormButtonEnable(){
+function checkClearFormButtonInputs(){
   var canClear = false;
   for (var i = 0; i < inputs.length; i++) {
     if (inputs[i].value.length != 0 && canClear==false) {
@@ -48,9 +60,9 @@ function clearFormButtonEnable(){
   clearFormButton.disabled = !canClear;
 }
 //Clears the inputs from the form
-function clearForm() {
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].value = "";
+function clearForm(clearInputs) {
+  for (var i = 0; i < clearInputs.length; i++) {
+    clearInputs[i].value = "";
   }
   clearFormButton.disabled = true;
 }
@@ -62,7 +74,9 @@ function clearForm() {
 // }
 //array.forEach(function(input){input.addEventListener("focusout",checkFormInputs)}
 inputs.forEach((input) => addEventListener("input", checkFormInputs));
-clearFormButton.addEventListener("click", clearForm);
+clearFormButton.addEventListener("click", function(){
+  clearForm(inputs);
+});
 
 submitButton.addEventListener("click", submitGuess);
 
