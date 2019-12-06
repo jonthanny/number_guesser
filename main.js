@@ -29,13 +29,11 @@ const challenger2GuessValue = document.querySelector("#challenger-2-guess");
 const challenger2NameValue = document.querySelector("#challenger-2-name");
 const guessHelpText = document.querySelectorAll(".guess-help-text");
 const clearFormButton = document.querySelector("#clear-form-button");
-//
 const inputs = document.querySelectorAll(".input-challenger");
 //Button DOM variables
 const resetButton = document.querySelector("#reset-button");
 const submitButton = document.querySelector("#submit-button");
 const updateButton = document.querySelector(".update-button");
-var currentCorrectNumber = 101;
 var maxElement = document.querySelector("#max-range-num");
 const maxInput = document.querySelector("#max-input-range");
 var minElement = document.querySelector("#min-range-num");
@@ -61,6 +59,8 @@ function updateMinMax(){
 function submitGuess() {
   challenger1.innerHTML = challenger1NameValue.value;
   challenger2.innerHTML = challenger2NameValue.value;
+  currentGame.challenger1 = challenger1NameValue.value;
+  currentGame.challenger2 = challenger2NameValue.value;
   challenger1Guess.innerHTML = challenger1GuessValue.value;
   challenger2Guess.innerHTML = challenger2GuessValue.value;
   var challengerGuesses = [challenger1GuessValue, challenger2GuessValue];
@@ -79,6 +79,18 @@ function checkGuess(challengerGuesses) {
       guessHelpText[i].innerHTML = "that's too high";
     } else {
       guessHelpText[i].innerHTML = "BOOM!";
+
+      if (i==0) {
+         currentGame.winner=challenger1NameValue.value;
+      }else {
+        currentGame.winner=challenger2NameValue.value;
+      }
+      // switch(i){
+      //   case 0:
+      //     currentGame.winner=challenger1NameValue.value;
+      //   case 1:
+      //     currentGame.winner=challenger2NameValue.value;
+      // }
       gameWon();
     }
   }
@@ -89,7 +101,31 @@ function checkGuess(challengerGuesses) {
 //+create card
 //+Initialize new game populate challengers from last game RND 2
 function gameWon(){
+  addCard();
+}
 
+function addCard(){
+  var el = document.createElement('div');
+  var domString =`<div class=previous-game-card>
+    <div class="verses-container">
+      <p class="challenger challenger-1">${currentGame.challenger1}</p><span class="vs">vs </span>
+      <p class="challenger challenger-2">${currentGame.challenger2}</p>
+    </div>
+     <div class="winner-display">
+       <h1><span class="bold">${currentGame.winner}</span></h1>
+       <h1>WINNER</h1>
+     </div>
+     <div class="stats-block">
+       <p><span class="bold">47</span> GUESSES</p>
+       <p><span class="bold">1</span> MINUTE <span class="bold">23</span> SECONDS</p>
+       <button class="close-card-button">
+         <div class="cross"></div>
+         <div class="cross vertical"></div>
+       </button>
+     </div>
+   </div>`;
+  el.innerHTML = domString;
+  document.getElementById('placeholder').appendChild(el.firstChild);
 }
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
