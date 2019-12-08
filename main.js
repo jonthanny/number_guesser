@@ -68,7 +68,7 @@ function submitGuess() {
   challenger1Guess.innerHTML = challenger1GuessValue.value;
   challenger2Guess.innerHTML = challenger2GuessValue.value;
   var challengerGuesses = [challenger1GuessValue, challenger2GuessValue];
-  var hasBeenWon = checkGuess(challengerGuesses);
+  checkGuess(challengerGuesses);
   if(currentGame.hasBeenWon==true){
     gameWon();
   }
