@@ -31,6 +31,7 @@ const challenger2NameValue = document.querySelector("#challenger-2-name");
 const guessHelpText = document.querySelectorAll(".guess-help-text");
 const clearFormButton = document.querySelector("#clear-form-button");
 const inputs = document.querySelectorAll(".input-challenger");
+var minMaxError = document.querySelector(".error-box");
 //Button DOM variables
 const resetButton = document.querySelector("#reset-button");
 const submitButton = document.querySelector("#submit-button");
@@ -153,8 +154,11 @@ function checkMinMaxInputs(inputsToCheck,button){
     if (inputsToCheck[i].value.length == 0) {
       canSubmit = false;
     }
-    if (inputsToCheck[1].value < inputsToCheck[0].value) {
+    if (inputsToCheck[1].value < inputsToCheck[0].value && inputsToCheck[1].value.length > 0) {
       canSubmit = false;
+      minMaxError.classList.add("error-box-show");
+    } else {
+      minMaxError.classList.remove("error-box-show")
     }
     if (isNaN(inputsToCheck[i].value) == true) {
       canSubmit = false;
