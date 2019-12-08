@@ -3,13 +3,14 @@ class Game {
     this.curMin = 1;
     this.curMax = 100;
     this.startTime = 0;
-    this.endTime= 1;
-    this.timeElapsed=0;
+    this.endTime = 1;
+    this.timeElapsed = 0;
     this.currentCorrectNumber = 0;
-    this.gameIndex=0;
-    this.challenger1='';
-    this.challenger2='';
-    this.winner='';
+    this.gameIndex = 0;
+    this.challenger1 = '';
+    this.challenger2 = '';
+    this.winner = '';
+    this.guessCount = 0;
   }
   timeElapse(){
     this.timeElapsed = this.endTime-this.startTime;
@@ -57,6 +58,7 @@ function updateMinMax(){
 // }
 
 function submitGuess() {
+  increaseGuessCounter();
   challenger1.innerHTML = challenger1NameValue.value;
   challenger2.innerHTML = challenger2NameValue.value;
   currentGame.challenger1 = challenger1NameValue.value;
@@ -69,27 +71,25 @@ function submitGuess() {
   checkFormInputs();
 }
 
+function increaseGuessCounter() {
+  currentGame.guessCount = currentGame.guessCount + 2;
+}
+
 //Check Guess checks the challengers guesses and iterates through the array. Then the
 function checkGuess(challengerGuesses) {
   for(var i=0; i<challengerGuesses.length; i++){
     var challengerValue = parseInt(challengerGuesses[i].value);
     if(challengerValue<currentGame.currentCorrectNumber){
       guessHelpText[i].innerHTML = "that's too low";
-    }else if (challengerValue > currentGame.currentCorrectNumber) {
+    } else if (challengerValue > currentGame.currentCorrectNumber) {
       guessHelpText[i].innerHTML = "that's too high";
     } else {
       guessHelpText[i].innerHTML = "BOOM!";
       if (i==0) {
          currentGame.winner=challenger1NameValue.value;
-      }else {
+      } else {
         currentGame.winner=challenger2NameValue.value;
-      }
-      // switch(i==0){
-      //   case true:
-      //     currentGame.winner=challenger1NameValue.value;
-      //   case false:
-      //     currentGame.winner=challenger2NameValue.value;
-      // }
+      };
       gameWon();
     }
   }
@@ -116,7 +116,7 @@ function addCard(){
        <h1>WINNER</h1>
      </div>
      <div class="stats-block">
-       <p><span class="bold">47</span> GUESSES</p>
+       <p><span class="bold">${currentGame.guessCount}</span> GUESSES</p>
        <p><span class="bold">1</span> MINUTE <span class="bold">23</span> SECONDS</p>
        <button class="close-card-button">
          <div class="cross"></div>
@@ -158,7 +158,6 @@ function checkClearFormButtonInputs(){
   clearFormButton.disabled = !canClear;
 }
 
-//Clears the inputs from the form
 function clearForm(clearInputs) {
   for (var i = 0; i < clearInputs.length; i++) {
     clearInputs[i].value = "";
