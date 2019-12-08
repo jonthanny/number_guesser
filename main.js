@@ -58,6 +58,7 @@ function updateMinMax(){
 // }
 
 function submitGuess() {
+  increaseGuessCounter();
   challenger1.innerHTML = challenger1NameValue.value;
   challenger2.innerHTML = challenger2NameValue.value;
   currentGame.challenger1 = challenger1NameValue.value;
@@ -70,31 +71,25 @@ function submitGuess() {
   checkFormInputs();
 }
 
+function increaseGuessCounter() {
+  currentGame.guessCount = currentGame.guessCount + 2;
+}
+
 //Check Guess checks the challengers guesses and iterates through the array. Then the
 function checkGuess(challengerGuesses) {
   for(var i=0; i<challengerGuesses.length; i++){
     var challengerValue = parseInt(challengerGuesses[i].value);
-    currentGame.guessCount += 1;
     if(challengerValue<currentGame.currentCorrectNumber){
       guessHelpText[i].innerHTML = "that's too low";
     } else if (challengerValue > currentGame.currentCorrectNumber) {
       guessHelpText[i].innerHTML = "that's too high";
     } else {
       guessHelpText[i].innerHTML = "BOOM!";
-      currentGame.guessCount++;
       if (i==0) {
          currentGame.winner=challenger1NameValue.value;
       } else {
         currentGame.winner=challenger2NameValue.value;
       };
-
-      // switch(i==0){
-      //   case true:
-      //     currentGame.winner=challenger1NameValue.value;
-      //   case false:
-      //     currentGame.winner=challenger2NameValue.value;
-      // }
-
       gameWon();
     }
   }
@@ -163,7 +158,6 @@ function checkClearFormButtonInputs(){
   clearFormButton.disabled = !canClear;
 }
 
-//Clears the inputs from the form
 function clearForm(clearInputs) {
   for (var i = 0; i < clearInputs.length; i++) {
     clearInputs[i].value = "";
