@@ -102,7 +102,7 @@ function checkGuess(challengerGuesses) {
 //+Initialize new game populate challengers from last game RND 2
 function gameWon(){
   addCard();
-  currentGame = new Game;
+  currentGame.newRandomNumber(1,100);
 }
 
 function addCard(){
