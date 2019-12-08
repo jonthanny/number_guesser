@@ -73,7 +73,6 @@ function submitGuess() {
   console.log(hasBeenWon);
   if(currentGame.hasBeenWon==true){
     gameWon();
-    console.log('is not getting here');
   }
 
   clearForm(challengerGuesses);
@@ -95,8 +94,6 @@ function checkGuess(challengerGuesses) {
         currentGame.winner = challenger1NameValue.value;
       } else if(i==1){
         currentGame.winner = challenger2NameValue.value;
-        console.log('It is also getting here');
-        console.log(challengerValue);
       }
     }
   }
