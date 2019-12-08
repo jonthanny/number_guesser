@@ -71,7 +71,6 @@ function submitGuess() {
   challenger2Guess.innerHTML = challenger2GuessValue.value;
   var challengerGuesses = [challenger1GuessValue, challenger2GuessValue];
   var hasBeenWon = checkGuess(challengerGuesses);
-  console.log(hasBeenWon);
   if(currentGame.hasBeenWon==true){
     gameWon();
   }
@@ -107,8 +106,7 @@ function checkGuess(challengerGuesses) {
 function gameWon(){
   addCard();
   currentGame.increaseCurrentGame();
-  currentGame.newRandomNumber();
-  //Delete this after game is done
+  currentGame.newRandomNumber(1,100);
 
 }
 
@@ -137,13 +135,10 @@ function addCard(){
   var gameNumber = currentGame.currentGameNumber;
   var closeButton = document.getElementById(`gameNumberButton${gameNumber}`);
   closeButton.addEventListener('click',function(){
-    woot(gameNumber);
     closeCard(gameNumber);
   });
 }
-function woot(num){
-  console.log(num);
-}
+
 function closeCard(gameNumber){
   //get card from onclick ref numbers/
   var el =document.getElementById(`gameNumber${gameNumber}`);
