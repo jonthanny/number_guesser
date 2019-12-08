@@ -11,6 +11,7 @@ class Game {
     this.challenger2='';
     this.winner='';
     this.currentGameNumber=0;
+    this.hasBeenWon=false;
   }
   timeElapse(){
     this.timeElapsed = this.endTime-this.startTime;
@@ -19,7 +20,7 @@ class Game {
     this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
   }
   increaseCurrentGame(){
-    this.currentGameNumber+=1;
+    this.currentGameNumber= this.currentGameNumber + 1;
   }
 }
 //Challenger Varibales Could be combined to a class
@@ -68,33 +69,35 @@ function submitGuess() {
   challenger1Guess.innerHTML = challenger1GuessValue.value;
   challenger2Guess.innerHTML = challenger2GuessValue.value;
   var challengerGuesses = [challenger1GuessValue, challenger2GuessValue];
-  checkGuess(challengerGuesses);
+  var hasBeenWon = checkGuess(challengerGuesses);
+  console.log(hasBeenWon);
+  if(currentGame.hasBeenWon==true){
+    gameWon();
+    console.log('is not getting here');
+  }
+
   clearForm(challengerGuesses);
   checkFormInputs();
 }
 
 //Check Guess checks the challengers guesses and iterates through the array. Then the
 function checkGuess(challengerGuesses) {
-  for(var i=0; i<challengerGuesses.length; i++){
+  for (var i = 0; i < challengerGuesses.length; i++) {
     var challengerValue = parseInt(challengerGuesses[i].value);
-    if(challengerValue<currentGame.currentCorrectNumber){
+    if (challengerValue < currentGame.currentCorrectNumber) {
       guessHelpText[i].innerHTML = "that's too low";
-    }else if (challengerValue > currentGame.currentCorrectNumber) {
+    } else if (challengerValue > currentGame.currentCorrectNumber) {
       guessHelpText[i].innerHTML = "that's too high";
-    } else {
+    } else if(challengerValue == currentGame.currentCorrectNumber){
+      currentGame.hasBeenWon = true;
       guessHelpText[i].innerHTML = "BOOM!";
-      if (i==0) {
-         currentGame.winner=challenger1NameValue.value;
-      }else {
-        currentGame.winner=challenger2NameValue.value;
+      if (i == 0) {
+        currentGame.winner = challenger1NameValue.value;
+      } else if(i==1){
+        currentGame.winner = challenger2NameValue.value;
+        console.log('It is also getting here');
+        console.log(challengerValue);
       }
-      // switch(i==0){
-      //   case true:
-      //     currentGame.winner=challenger1NameValue.value;
-      //   case false:
-      //     currentGame.winner=challenger2NameValue.value;
-      // }
-      gameWon();
     }
   }
 }
@@ -106,6 +109,9 @@ function checkGuess(challengerGuesses) {
 function gameWon(){
   addCard();
   currentGame.increaseCurrentGame();
+  currentGame.newRandomNumber();
+  //Delete this after game is done
+
 }
 
 function addCard(){
@@ -130,13 +136,20 @@ function addCard(){
    </div>`;
   el.innerHTML = domString;
   document.getElementById('placeholder').appendChild(el.firstChild);
-  var closeButton = document.getElementById(`.gameNumberButton${currentGame.currentGameNumber}`);
-  closeButton.addEventListener('click',closeCard(currentGameNumber));
+  var gameNumber = currentGame.currentGameNumber;
+  var closeButton = document.getElementById(`gameNumberButton${gameNumber}`);
+  closeButton.addEventListener('click',function(){
+    woot(gameNumber);
+    closeCard(gameNumber);
+  });
 }
-
-function closeCar(gameNumber){
+function woot(num){
+  console.log(num);
+}
+function closeCard(gameNumber){
   //get card from onclick ref numbers/
-  //remove element.
+  var el =document.getElementById(`gameNumber${gameNumber}`);
+  el.remove();
 }
 
 // checkFormInputs() is called whenever a input field is changed.
