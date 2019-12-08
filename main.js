@@ -132,7 +132,7 @@ function addCard(){
 function checkFormInputs() {
   checkClearFormButtonInputs();
   checkButtonInputs(inputs,submitButton);
-  checkButtonInputs([minInput,maxInput],updateButton);
+  checkMinMaxInputs([minInput,maxInput],updateButton);
   //Add form Validation for numbers
 }
 
@@ -141,6 +141,22 @@ function checkButtonInputs(inputsToCheck,button){
   var canSubmit = true;
   for (var i = 0; i < inputsToCheck.length; i++) {
     if (inputsToCheck[i].value.length == 0) {
+      canSubmit = false;
+    }
+  }
+  button.disabled = !canSubmit;
+}
+
+function checkMinMaxInputs(inputsToCheck,button){
+  var canSubmit = true;
+  for (var i = 0; i < inputsToCheck.length; i++) {
+    if (inputsToCheck[i].value.length == 0) {
+      canSubmit = false;
+    }
+    if (inputsToCheck[1].value < inputsToCheck[0].value) {
+      canSubmit = false;
+    }
+    if (isNaN(inputsToCheck[i].value) == true) {
       canSubmit = false;
     }
   }
