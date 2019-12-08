@@ -1,16 +1,17 @@
 class Game {
   constructor(){
-    this.curMin = 1;
-    this.curMax = 100;
-    this.startTime = 0;
-    this.endTime = 1;
-    this.timeElapsed = 0;
-    this.currentCorrectNumber = 0;
-    this.gameIndex = 0;
     this.challenger1 = '';
     this.challenger2 = '';
-    this.winner = '';
+    this.curMax = 100;
+    this.curMin = 1;
+    this.currentCorrectNumber = 0;
+    this.currentGameNumber = 0;
+    this.endTime = 1;
+    this.gameIndex = 0;
     this.guessCount = 0;
+    this.startTime = 0;
+    this.timeElapsed = 0;
+    this.winner = '';
   }
   timeElapse(){
     this.timeElapsed = this.endTime-this.startTime;
@@ -103,6 +104,7 @@ function checkGuess(challengerGuesses) {
 function gameWon(){
   addCard();
   currentGame = new Game;
+  currentGame.newRandomNumber(1,100);
 }
 
 function addCard(){
