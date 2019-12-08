@@ -19,6 +19,9 @@ class Game {
   newRandomNumber(min,max){
     this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
   }
+  increaseCurrentGame(){
+    this.currentGameNumber= this.currentGameNumber + 1;
+  }
 }
 //Challenger Varibales Could be combined to a class
 const challenger1 = document.querySelector(".challenger-1");
@@ -102,6 +105,7 @@ function checkGuess(challengerGuesses) {
 //+Initialize new game populate challengers from last game RND 2
 function gameWon(){
   addCard();
+  currentGame.increaseCurrentGame();
 }
 
 function addCard(){
