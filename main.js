@@ -126,7 +126,8 @@ function addCard(){
      </div>
    </div>`;
   el.innerHTML = domString;
-  document.getElementById('placeholder').appendChild(el.firstChild);
+  var parent = document.getElementById('placeholder')
+  parent.prepend(el.firstChild);
 }
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
