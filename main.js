@@ -42,7 +42,6 @@ const maxInput = document.querySelector("#max-input-range");
 var minElement = document.querySelector("#min-range-num");
 const minInput = document.querySelector("#min-input-range");
 var currentGame = new Game;
-var pastGames =[];
 
 //grabs the minimum and maximum values of the DOM input values
 //Updates min and max visually
@@ -109,7 +108,7 @@ function gameWon(){
 
 function addCard(){
   var el = document.createElement('div');
-  var domString =`<div class=previous-game-card>
+  var domString =`<div class="previous-game-card" id="gameNumber${currentGame.currentGameNumber}">
     <div class="verses-container">
       <p class="challenger challenger-1">${currentGame.challenger1}</p><span class="vs">vs </span>
       <p class="challenger challenger-2">${currentGame.challenger2}</p>
@@ -119,9 +118,9 @@ function addCard(){
        <h1>WINNER</h1>
      </div>
      <div class="stats-block">
-       <p><span class="bold">${currentGame.guessCount}</span> GUESSES</p>
+       <p><span class="bold">47</span> GUESSES</p>
        <p><span class="bold">1</span> MINUTE <span class="bold">23</span> SECONDS</p>
-       <button class="close-card-button">
+       <button class="close-card-button" id="gameNumberButton${currentGame.currentGameNumber}">
          <div class="cross"></div>
          <div class="cross vertical"></div>
        </button>
@@ -129,6 +128,14 @@ function addCard(){
    </div>`;
   el.innerHTML = domString;
   document.getElementById('placeholder').appendChild(el.firstChild);
+  var closeButton = document.getElementById(`gameNumberButton${gameNumber}`);
+  closeButton.addEventListener('click',function(){
+    closeCard(gameNumber);
+  });
+}
+
+function closeCard(gameNumber){
+  //get card from eventlistener onclick and use that number to find the associated Card ID
 }
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
