@@ -1,18 +1,18 @@
 class Game {
   constructor(){
-    this.challenger1 = '';
-    this.challenger2 = '';
+    this.challenger1='';
+    this.challenger2='';
     this.curMax = 100;
     this.curMin = 1;
     this.currentCorrectNumber = 0;
-
-    this.endTime = 1;
-    this.gameIndex = 0;
+    this.currentGameNumber=0;
+    this.endTime= 1;
+    this.gameIndex=0;
     this.guessCount = 0;
     this.hasBeenWon=false;
     this.startTime = 0;
-    this.timeElapsed = 0;
-    this.winner = '';
+    this.timeElapsed=0;
+    this.winner='';
   }
   timeElapse(){
     this.timeElapsed = this.endTime-this.startTime;
@@ -109,6 +109,7 @@ function checkGuess(challengerGuesses) {
 //+Initialize new game populate challengers from last game RND 2
 function gameWon(){
   addCard();
+  currentGame.increaseCurrentGame();
   currentGame.newRandomNumber(1,100);
 }
 
@@ -133,9 +134,9 @@ function addCard(){
      </div>
    </div>`;
   el.innerHTML = domString;
-
-  document.getElementById('placeholder').appendChild(el.firstChild);
   var gameNumber = currentGame.currentGameNumber;
+  var parent = document.getElementById('placeholder');
+  parent.prepend(el.firstChild);
   var closeButton = document.getElementById(`gameNumberButton${gameNumber}`);
   closeButton.addEventListener('click',function(){
     closeCard(gameNumber);
@@ -146,8 +147,6 @@ function closeCard(gameNumber){
   //get card from eventlistener onclick and use that number to find the associated Card ID
   var el =document.getElementById(`gameNumber${gameNumber}`);
   el.remove();
-
-
 }
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
