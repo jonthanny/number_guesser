@@ -1,4 +1,3 @@
-
 //Collect all of the DOM elements used
 const challenger1GuessDisplay = document.querySelector(".challenger-1-guess");
 const challenger1GuessField = document.querySelector("#challenger-1-guess");
@@ -10,7 +9,7 @@ const challenger2NameDisplay = document.querySelector(".challenger-2");
 const challenger2NameField = document.querySelector("#challenger-2-name");
 
 const guessHelpText = document.querySelectorAll(".guess-help-text");
-const inputs = document.querySelectorAll(".input-challenger");
+const challengerInputs = document.querySelectorAll(".input-challenger");
 var minMaxError = document.querySelector(".error-box");
 var maxElement = document.querySelector("#max-range-num");
 const maxInput = document.querySelector("#max-input-range");
@@ -25,10 +24,10 @@ const updateButton = document.querySelector(".update-button");
 // || GAME CLASS and Initialization of currentGame || //
 class Game {
   constructor(){
-    this.challenger1Name = '';
-    this.challenger2Name = '';
     this.challenger1GuessValue = null;
+    this.challenger1Name = '';
     this.challenger2GuessValue = null;
+    this.challenger2Name = '';
     this.curMax = 100;
     this.curMin = 1;
     this.currentCorrectNumber = 0;
@@ -37,6 +36,7 @@ class Game {
     this.gameIndex = 0;
     this.guessCount = 0;
     this.hasBeenWon = false;
+    this.hasStarted = false;
     this.startTime = null;
     this.timeElapsed = 0;
     this.timeElapsedMinutes = 0;
@@ -45,7 +45,10 @@ class Game {
   }
   logStartTime() {
     //update this with a new Date()
-    this.startTime = new Date();
+    if (this.hasStarted == false){
+      this.startTime = new Date();
+      this.hasStarted = true;
+    }
   }
   logEndTime() {
     //update this with a new Date()
@@ -71,6 +74,7 @@ class Game {
   reset(curMin,curMax) {
     this.hasBeenWon = false;
     this.guessCount = 0;
+    this.hasStarted = false;
     this.newRandomNumber(curMin,curMax);
   }
 }
@@ -86,7 +90,7 @@ function updateMinMax(){
   currentGame.curMax = parseInt(maxInput.value);
   minElement.innerHTML = currentGame.curMin;
   maxElement.innerHTML =currentGame.curMax;
-  currentGame.newRandomNumber(currentGame.curMin,currentGame.curMax);
+  currentGame.newRandomNumber(currentGame.curMin, currentGame.curMax);
 }
 
 function updateGuess(){
@@ -106,15 +110,13 @@ function submitGuess() {
   challenger1GuessDisplay.innerHTML = currentGame.challenger1GuessValue;
   challenger2GuessDisplay.innerHTML = currentGame.challenger2GuessValue;
   currentGame.increaseGuessCounter();
-  checkFormInputs();
-  var challengerGuesses = [currentGame.challenger1GuessValue, currentGame.challenger2GuessValue];
-  checkGuess(challengerGuesses);
-  if(currentGame.hasBeenWon==true){
+  checkGuess([currentGame.challenger1GuessValue, currentGame.challenger2GuessValue]);
+  if(currentGame.hasBeenWon == true){
     gameWon();
-
   }
-  clearForm(challengerGuesses);
   currentGame.logStartTime();
+  checkFormInputs();
+  clearForm([challenger1GuessField, challenger2GuessField]);
 }
 
 //Check Guess checks the challengers guesses and iterates through the array. Then the
@@ -129,9 +131,9 @@ function checkGuess(challengerGuesses) {
       currentGame.hasBeenWon = true;
       guessHelpText[i].innerHTML = "BOOM!";
       if (i == 0) {
-        currentGame.winner = challenger1NameValue.value;
+        currentGame.winner = challenger1NameField.value;
       } else if(i==1){
-        currentGame.winner = challenger2NameValue.value;
+        currentGame.winner = challenger2NameField.value;
       }
     }
   }
@@ -143,6 +145,7 @@ function gameWon(){
   addCard();
   currentGame.increaseCurrentGame();
   currentGame.reset(currentGame.curMin,currentGame.curMin);
+  checkFormInputs();
 }
 
 // NEED COMMENTS HERE
@@ -150,8 +153,8 @@ function addCard(){
   var el = document.createElement('div');
   var domString =`<div class="previous-game-card" id="gameNumber${currentGame.currentGameNumber}">
     <div class="verses-container">
-      <p class="challenger challenger-1">${currentGame.challenger1}</p><span class="vs">vs </span>
-      <p class="challenger challenger-2">${currentGame.challenger2}</p>
+      <p class="challenger challenger-1">${currentGame.challenger1Name}</p><span class="vs">vs </span>
+      <p class="challenger challenger-2">${currentGame.challenger2Name}</p>
     </div>
      <div class="winner-display">
        <h1><span class="bold">${currentGame.winner}</span></h1>
@@ -190,6 +193,7 @@ function clearForm(clearInputs) {
     clearInputs[i].value = "";
   }
   clearFormButton.disabled = true;
+  enableSubmitButton(challengerInputs, submitButton)
 }
 
 // || VALIDATION FUNCTIONS || //
@@ -197,7 +201,7 @@ function clearForm(clearInputs) {
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
   enableClearButton();
-  enableSubmitButton(inputs, submitButton);
+  enableSubmitButton(challengerInputs, submitButton);
   checkValidMinMaxInput([minInput, maxInput]);
   enableUpdateButton([minInput, maxInput], updateButton);
 }
@@ -230,8 +234,8 @@ function enableUpdateButton(inputsToCheck, button) {
 //Checks the associated button form to make sure the input has something in it
 function enableClearButton(){
   var canClear = false;
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].value.length != 0 && canClear==false) {
+  for (var i = 0; i < challengerInputs.length; i++) {
+    if (challengerInputs[i].value.length != 0 && canClear==false) {
       canClear = true;
     }
   }
@@ -254,9 +258,9 @@ function checkValidMinMaxInput(inputsToCheck) {
 
 
 // || EVENT LISTENERS || //
-inputs.forEach((input) => addEventListener("input", checkFormInputs));
+challengerInputs.forEach((input) => addEventListener("input", checkFormInputs));
 clearFormButton.addEventListener("click", function() {
-  clearForm(inputs);
+  clearForm(challengerInputs);
 });
 submitButton.addEventListener("click", function() {
   updateGuess();
