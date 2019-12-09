@@ -1,3 +1,27 @@
+
+//Collect all of the DOM elements used
+const challenger1 = document.querySelector(".challenger-1");
+const challenger1Guess = document.querySelector(".challenger-1-guess");
+const challenger1GuessValue = document.querySelector("#challenger-1-guess");
+const challenger1NameValue = document.querySelector("#challenger-1-name");
+const challenger2 = document.querySelector(".challenger-2");
+const challenger2Guess = document.querySelector(".challenger-2-guess");
+const challenger2GuessValue = document.querySelector("#challenger-2-guess");
+const challenger2NameValue = document.querySelector("#challenger-2-name");
+const guessHelpText = document.querySelectorAll(".guess-help-text");
+const inputs = document.querySelectorAll(".input-challenger");
+var minMaxError = document.querySelector(".error-box");
+var maxElement = document.querySelector("#max-range-num");
+const maxInput = document.querySelector("#max-input-range");
+var minElement = document.querySelector("#min-range-num");
+const minInput = document.querySelector("#min-input-range");
+//Button DOM variables
+const clearFormButton = document.querySelector("#clear-form-button");
+const resetButton = document.querySelector("#reset-button");
+const submitButton = document.querySelector("#submit-button");
+const updateButton = document.querySelector(".update-button");
+
+// || GAME CLASS and Initialization of currentGame || //
 class Game {
   constructor(){
     this.challenger1 = '';
@@ -39,32 +63,18 @@ class Game {
     this.currentGameNumber= this.currentGameNumber + 1;
   }
   increaseGuessCounter() {
-    currentGame.guessCount = currentGame.guessCount + 2;
+    this.guessCount = this.guessCount + 2;
+  }
+  reset(curMin,curMax) {
+    this.hasBeenWon = false;
+    this.guessCount = 0;
+    this.newRandomNumber(curMin,curMax);
   }
 }
-//Challenger Varibales Could be combined to a class
-const challenger1 = document.querySelector(".challenger-1");
-const challenger1Guess = document.querySelector(".challenger-1-guess");
-const challenger1GuessValue = document.querySelector("#challenger-1-guess");
-const challenger1NameValue = document.querySelector("#challenger-1-name");
-const challenger2 = document.querySelector(".challenger-2");
-const challenger2Guess = document.querySelector(".challenger-2-guess");
-const challenger2GuessValue = document.querySelector("#challenger-2-guess");
-const challenger2NameValue = document.querySelector("#challenger-2-name");
-const guessHelpText = document.querySelectorAll(".guess-help-text");
-const clearFormButton = document.querySelector("#clear-form-button");
-const inputs = document.querySelectorAll(".input-challenger");
-var minMaxError = document.querySelector(".error-box");
-//Button DOM variables
-const resetButton = document.querySelector("#reset-button");
-const submitButton = document.querySelector("#submit-button");
-const updateButton = document.querySelector(".update-button");
-var maxElement = document.querySelector("#max-range-num");
-const maxInput = document.querySelector("#max-input-range");
-var minElement = document.querySelector("#min-range-num");
-const minInput = document.querySelector("#min-input-range");
+
 var currentGame = new Game;
 
+// || GAME FUNCTIONS || //
 //grabs the minimum and maximum values of the DOM input values
 //Updates min and max visually
 //Passes minValue and maxValue as arguments to resetGame
@@ -76,7 +86,7 @@ function updateMinMax(){
   currentGame.newRandomNumber(currentGame.curMin,currentGame.curMax);
 }
 
-//
+// NEED COMMENTS HERE
 function submitGuess() {
   currentGame.increaseGuessCounter();
   challenger1.innerHTML = challenger1NameValue.value;
@@ -96,21 +106,35 @@ function submitGuess() {
   currentGame.logStartTime();
 }
 
-
-
+//Check Guess checks the challengers guesses and iterates through the array. Then the
+function checkGuess(challengerGuesses) {
+  for (var i = 0; i < challengerGuesses.length; i++) {
+    var challengerValue = parseInt(challengerGuesses[i].value);
+    if (challengerValue < currentGame.currentCorrectNumber) {
+      guessHelpText[i].innerHTML = "that's too low";
+    } else if (challengerValue > currentGame.currentCorrectNumber) {
+      guessHelpText[i].innerHTML = "that's too high";
+    } else if(challengerValue == currentGame.currentCorrectNumber){
+      currentGame.hasBeenWon = true;
+      guessHelpText[i].innerHTML = "BOOM!";
+      if (i == 0) {
+        currentGame.winner = challenger1NameValue.value;
+      } else if(i==1){
+        currentGame.winner = challenger2NameValue.value;
+      }
+    }
+  }
+}
 
 //What happens when the game is won?
-//+update currentGame
-//+create card
-//+Initialize new game populate challengers from last game RND 2
 function gameWon(){
   currentGame.logEndTime();
   addCard();
   currentGame.increaseCurrentGame();
-  currentGame.newRandomNumber(1,100);
-  currentGame.hasBeenWon = false;
+  currentGame.reset(currentGame.curMin,currentGame.curMin);
 }
 
+// NEED COMMENTS HERE
 function addCard(){
   var el = document.createElement('div');
   var domString =`<div class="previous-game-card" id="gameNumber${currentGame.currentGameNumber}">
@@ -141,44 +165,34 @@ function addCard(){
   });
 }
 
+// NEED COMMENTS HERE
 function closeCard(gameNumber){
   //get card from eventlistener onclick and use that number to find the associated Card ID
   var el =document.getElementById(`gameNumber${gameNumber}`);
   el.remove();
 }
 
-//Check Guess checks the challengers guesses and iterates through the array. Then the
-function checkGuess(challengerGuesses) {
-  for (var i = 0; i < challengerGuesses.length; i++) {
-    var challengerValue = parseInt(challengerGuesses[i].value);
-    if (challengerValue < currentGame.currentCorrectNumber) {
-      guessHelpText[i].innerHTML = "that's too low";
-    } else if (challengerValue > currentGame.currentCorrectNumber) {
-      guessHelpText[i].innerHTML = "that's too high";
-    } else if(challengerValue == currentGame.currentCorrectNumber){
-      currentGame.hasBeenWon = true;
-      guessHelpText[i].innerHTML = "BOOM!";
-      if (i == 0) {
-        currentGame.winner = challenger1NameValue.value;
-      } else if(i==1){
-        currentGame.winner = challenger2NameValue.value;
-      }
-    }
+// || UTILITY FUNCTIONS || //
+// NEED COMMENTS HERE
+function clearForm(clearInputs) {
+  for (var i = 0; i < clearInputs.length; i++) {
+    clearInputs[i].value = "";
   }
+  clearFormButton.disabled = true;
 }
 
+// || VALIDATION FUNCTIONS || //
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
-  console.log("checking form inputs")
-  checkClearFormButtonInputs();
-  checkButtonInputs(inputs,submitButton);
-  checkMinMaxInputs([minInput,maxInput],updateButton);
-  //Add form Validation for numbers
+  enableClearButton();
+  enableSubmitButton(inputs, submitButton);
+  checkValidMinMaxInput([minInput, maxInput]);
+  enableUpdateButton([minInput, maxInput], updateButton);
 }
 
 //Checks the associated button form to make sure the input has something in it
-function checkButtonInputs(inputsToCheck, button, buttonName){
+function enableSubmitButton(inputsToCheck, button){
   var canSubmit = true;
   for (var i = 0; i < inputsToCheck.length; i++) {
     if (inputsToCheck[i].value.length == 0) {
@@ -188,11 +202,9 @@ function checkButtonInputs(inputsToCheck, button, buttonName){
   button.disabled = !canSubmit;
 }
 
-function checkMinMaxInputs(inputsToCheck,button){
+//
+function enableUpdateButton(inputsToCheck, button) {
   var canSubmit = true;
-  var minInputValue = parseInt(inputsToCheck[0].value)
-  var maxInputValue = parseInt(inputsToCheck[1].value)
-
   for (var i = 0; i < inputsToCheck.length; i++) {
     if (inputsToCheck[i].value.length == 0) {
       canSubmit = false;
@@ -202,19 +214,10 @@ function checkMinMaxInputs(inputsToCheck,button){
     }
     button.disabled = !canSubmit;
   }
-  if (maxInputValue <= minInputValue && maxInputValue > 0) {
-    canSubmit = false;
-    minMaxError.classList.add("error-box-show");
-    maxInput.classList.add("error-border");
-  } else {
-    minMaxError.classList.remove("error-box-show")
-    maxInput.classList.remove("error-border");
-  }
-
 }
 
 //Checks the associated button form to make sure the input has something in it
-function checkClearFormButtonInputs(){
+function enableClearButton(){
   var canClear = false;
   for (var i = 0; i < inputs.length; i++) {
     if (inputs[i].value.length != 0 && canClear==false) {
@@ -224,25 +227,30 @@ function checkClearFormButtonInputs(){
   clearFormButton.disabled = !canClear;
 }
 
-function clearForm(clearInputs) {
-  for (var i = 0; i < clearInputs.length; i++) {
-    clearInputs[i].value = "";
+//
+function checkValidMinMaxInput(inputsToCheck) {
+  var minInputValue = parseInt(inputsToCheck[0].value)
+  var maxInputValue = parseInt(inputsToCheck[1].value)
+  if (maxInputValue <= minInputValue && maxInputValue > 0) {
+    canSubmit = false;
+    minMaxError.classList.add("error-box-show");
+    maxInput.classList.add("error-border");
+  } else {
+    minMaxError.classList.remove("error-box-show")
+    maxInput.classList.remove("error-border");
   }
-  clearFormButton.disabled = true;
 }
 
-//Event Listeners
-// for(var i=0;i<inputs.legth; i++){
-//   input[i].addEventListener("input",checkFormInputs);
-// }
-//array.forEach(function(input){input.addEventListener("focusout",checkFormInputs)}
+
+// || EVENT LISTENERS || //
 inputs.forEach((input) => addEventListener("input", checkFormInputs));
 clearFormButton.addEventListener("click", function() {
   clearForm(inputs);
 });
 submitButton.addEventListener("click", submitGuess);
 updateButton.addEventListener("click", updateMinMax);
-// debugger;
+
+// || ON WINDOW LOAD || //
 window.onload = function() {
   currentGame.newRandomNumber(currentGame.curMin,currentGame.curMax)
   checkFormInputs();
