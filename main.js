@@ -22,7 +22,7 @@ var updateButton = document.querySelector(".update-button");
 
 // || GAME CLASS and Initialization of currentGame || //
 class Game {
-  varructor(){
+  constructor(){
     this.challenger1GuessValue = null;
     this.challenger1Name = '';
     this.challenger2GuessValue = null;
@@ -60,6 +60,10 @@ class Game {
     timeElapsed /= 1000;
     this.timeElapsedMinutes= Math.floor(timeElapsed / 60);
     this.timeElapsedSeconds= Math.trunc(timeElapsed - (this.timeElapsedMinutes * 60));
+    if (this.timeElapsedMinutes > 1000){
+      this.timeElapsedMinutes = 0;
+      this.timeElapsedSeconds = 0;
+    }
   }
   newRandomNumber(min, max) {
     this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
