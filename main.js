@@ -15,12 +15,19 @@ class Game {
   }
   logStartTime(){
     //update this with a new Date()
+    this.startTime = new Date();
   }
   logEndTime(){
     //update this with a new Date()
+    this.endTime = new Date();
+    this.timeElapse();
   }
   timeElapse(){
-    //update this with a new Date()
+    //Dates will have a ms since a date so we will get ms. Divide by 1000 and we get seconds.
+    var timeElapsed = this.endTime-this.startTime;
+    timeElapsed /= 1000;
+    this.timeElapsedMinutes= Math.floor(timeElapsed/60);
+    this.timeElapsedSeconds= timeElapsed - (this.timeElapsedMinutes *60);
   }
   newRandomNumber(min,max){
     this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
