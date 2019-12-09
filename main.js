@@ -6,16 +6,31 @@ class Game {
     this.curMin = 1;
     this.currentCorrectNumber = 0;
     this.currentGameNumber=0;
-    this.endTime= 1;
-    this.gameIndex=0;
+    this.endTime = null;
+    this.gameIndex = 0;
     this.guessCount = 0;
     this.hasBeenWon=false;
-    this.startTime = 0;
+    this.startTime = null;
     this.timeElapsed=0;
+    this.timeElapsedMinutes = 0;
+    this.timeElapsedSeconds = 0;
     this.winner='';
   }
+  logStartTime(){
+    //update this with a new Date()
+    this.startTime = new Date();
+  }
+  logEndTime(){
+    //update this with a new Date()
+    this.endTime = new Date();
+    this.timeElapse();
+  }
   timeElapse(){
-    this.timeElapsed = this.endTime-this.startTime;
+    //Dates will have a ms since a date so we will get ms. Divide by 1000 and we get seconds.
+    var timeElapsed = this.endTime-this.startTime;
+    timeElapsed /= 1000;
+    this.timeElapsedMinutes= Math.floor(timeElapsed/60);
+    this.timeElapsedSeconds= Math.trunc(timeElapsed - (this.timeElapsedMinutes *60));
   }
   newRandomNumber(min,max){
     this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -70,13 +85,15 @@ function submitGuess() {
   currentGame.challenger2 = challenger2NameValue.value;
   challenger1Guess.innerHTML = challenger1GuessValue.value;
   challenger2Guess.innerHTML = challenger2GuessValue.value;
+  checkFormInputs();
   var challengerGuesses = [challenger1GuessValue, challenger2GuessValue];
   checkGuess(challengerGuesses);
   if(currentGame.hasBeenWon==true){
     gameWon();
+
   }
   clearForm(challengerGuesses);
-  checkFormInputs();
+  currentGame.logStartTime();
 }
 
 function increaseGuessCounter() {
@@ -108,9 +125,11 @@ function checkGuess(challengerGuesses) {
 //+create card
 //+Initialize new game populate challengers from last game RND 2
 function gameWon(){
+  currentGame.logEndTime();
   addCard();
   currentGame.increaseCurrentGame();
   currentGame.newRandomNumber(1,100);
+  currentGame.hasBeenWon = false;
 }
 
 function addCard(){
@@ -125,8 +144,8 @@ function addCard(){
        <h1>WINNER</h1>
      </div>
      <div class="stats-block">
-       <p><span class="bold">47</span> GUESSES</p>
-       <p><span class="bold">1</span> MINUTE <span class="bold">23</span> SECONDS</p>
+       <p><span class="bold">${currentGame.guessCount}</span> GUESSES</p>
+       <p><span class="bold">${currentGame.timeElapsedMinutes}</span> MINUTE <span class="bold">${currentGame.timeElapsedSeconds}</span> SECONDS</p>
        <button class="close-card-button" id="gameNumberButton${currentGame.currentGameNumber}">
          <div class="cross"></div>
          <div class="cross vertical"></div>
