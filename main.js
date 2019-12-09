@@ -129,6 +129,7 @@ function addCard(){
      </div>
    </div>`;
   el.innerHTML = domString;
+
   document.getElementById('placeholder').appendChild(el.firstChild);
   var gameNumber = currentGame.currentGameNumber;
   var closeButton = document.getElementById(`gameNumberButton${gameNumber}`);
@@ -141,6 +142,8 @@ function closeCard(gameNumber){
   //get card from eventlistener onclick and use that number to find the associated Card ID
   var el =document.getElementById(`gameNumber${gameNumber}`);
   el.remove();
+
+
 }
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
