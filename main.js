@@ -1,7 +1,7 @@
 class Game {
   constructor(){
-    this.challenger1 = '';
-    this.challenger2 = '';
+    this.challenger1='';
+    this.challenger2='';
     this.curMax = 100;
     this.curMin = 1;
     this.startTime = null;
@@ -11,11 +11,12 @@ class Game {
     this.currentCorrectNumber = 0;
     this.endTime = 1;
     this.gameIndex = 0;
+    this.currentGameNumber=0;
     this.guessCount = 0;
     this.hasBeenWon=false;
     this.startTime = 0;
-    this.timeElapsed = 0;
-    this.winner = '';
+    this.timeElapsed=0;
+    this.winner='';
   }
   logStartTime(){
     //update this with a new Date()
@@ -86,13 +87,14 @@ function submitGuess() {
   currentGame.challenger2 = challenger2NameValue.value;
   challenger1Guess.innerHTML = challenger1GuessValue.value;
   challenger2Guess.innerHTML = challenger2GuessValue.value;
+  checkFormInputs();
   var challengerGuesses = [challenger1GuessValue, challenger2GuessValue];
   checkGuess(challengerGuesses);
   if(currentGame.hasBeenWon==true){
     gameWon();
+
   }
   clearForm(challengerGuesses);
-  checkFormInputs();
   currentGame.logStartTime();
 }
 
@@ -127,7 +129,9 @@ function checkGuess(challengerGuesses) {
 function gameWon(){
   currentGame.logEndTime();
   addCard();
+  currentGame.increaseCurrentGame();
   currentGame.newRandomNumber(1,100);
+  currentGame.hasBeenWon = false;
 }
 
 function addCard(){
@@ -151,9 +155,9 @@ function addCard(){
      </div>
    </div>`;
   el.innerHTML = domString;
-
-  document.getElementById('placeholder').appendChild(el.firstChild);
   var gameNumber = currentGame.currentGameNumber;
+  var parent = document.getElementById('placeholder');
+  parent.prepend(el.firstChild);
   var closeButton = document.getElementById(`gameNumberButton${gameNumber}`);
   closeButton.addEventListener('click',function(){
     closeCard(gameNumber);
@@ -164,8 +168,6 @@ function closeCard(gameNumber){
   //get card from eventlistener onclick and use that number to find the associated Card ID
   var el =document.getElementById(`gameNumber${gameNumber}`);
   el.remove();
-
-
 }
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
