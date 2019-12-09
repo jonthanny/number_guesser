@@ -125,8 +125,8 @@ function checkGuess(challengerGuesses) {
 //+create card
 //+Initialize new game populate challengers from last game RND 2
 function gameWon(){
-  addCard();
   currentGame.logEndTime();
+  addCard();
   currentGame.newRandomNumber(1,100);
 }
 
@@ -142,8 +142,8 @@ function addCard(){
        <h1>WINNER</h1>
      </div>
      <div class="stats-block">
-       <p><span class="bold">47</span> GUESSES</p>
-       <p><span class="bold">1</span> MINUTE <span class="bold">23</span> SECONDS</p>
+       <p><span class="bold">${currentGame.guessCount}</span> GUESSES</p>
+       <p><span class="bold">${currentGame.timeElapsedMinutes}</span> MINUTE <span class="bold">${currentGame.timeElapsedSeconds}</span> SECONDS</p>
        <button class="close-card-button" id="gameNumberButton${currentGame.currentGameNumber}">
          <div class="cross"></div>
          <div class="cross vertical"></div>
