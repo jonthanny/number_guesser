@@ -9,7 +9,6 @@ class Game {
     this.timeElapsedMinutes = 0;
     this.timeElapsedSeconds = 0;
     this.currentCorrectNumber = 0;
-
     this.endTime = 1;
     this.gameIndex = 0;
     this.guessCount = 0;
