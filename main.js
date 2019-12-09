@@ -1,31 +1,31 @@
 class Game {
   constructor(){
-    this.challenger1='';
-    this.challenger2='';
+    this.challenger1 = '';
+    this.challenger2 = '';
     this.curMax = 100;
     this.curMin = 1;
     this.currentCorrectNumber = 0;
-    this.currentGameNumber=0;
+    this.currentGameNumber = 0;
     this.endTime = null;
     this.gameIndex = 0;
     this.guessCount = 0;
-    this.hasBeenWon=false;
+    this.hasBeenWon = false;
     this.startTime = null;
-    this.timeElapsed=0;
+    this.timeElapsed = 0;
     this.timeElapsedMinutes = 0;
     this.timeElapsedSeconds = 0;
-    this.winner='';
+    this.winner = '';
   }
-  logStartTime(){
+  logStartTime() {
     //update this with a new Date()
     this.startTime = new Date();
   }
-  logEndTime(){
+  logEndTime() {
     //update this with a new Date()
     this.endTime = new Date();
     this.timeElapse();
   }
-  timeElapse(){
+  timeElapse() {
     //Dates will have a ms since a date so we will get ms. Divide by 1000 and we get seconds.
     var timeElapsed = this.endTime-this.startTime;
     timeElapsed /= 1000;
@@ -196,8 +196,11 @@ function checkMinMaxInputs(inputsToCheck,button){
     if (inputsToCheck[1].value <= inputsToCheck[0].value && inputsToCheck[1].value.length > 0) {
       canSubmit = false;
       minMaxError.classList.add("error-box-show");
+      maxInput.classList.add("error-border");
     } else {
       minMaxError.classList.remove("error-box-show")
+      maxInput.classList.remove("error-border");
+
     }
     if (isNaN(inputsToCheck[i].value) == true) {
       canSubmit = false;

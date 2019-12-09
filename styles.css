@@ -92,16 +92,15 @@ section {
   margin-right: 20px;
 }
 
-.input-container input {
+input {
   width: 100%;
+  outline: none;
   border: 2px solid #d0d2d3;
   height: 33px;
 }
 
-.max-input-error {
-  width: 100%;
+.error-border {
   border: 2px solid #dd1792;
-  height: 33px;
 }
 
 .error-box {
