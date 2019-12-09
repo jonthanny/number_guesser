@@ -1,13 +1,14 @@
 
 //Collect all of the DOM elements used
-const challenger1 = document.querySelector(".challenger-1");
-const challenger1Guess = document.querySelector(".challenger-1-guess");
-const challenger1GuessValue = document.querySelector("#challenger-1-guess");
-const challenger1NameValue = document.querySelector("#challenger-1-name");
-const challenger2 = document.querySelector(".challenger-2");
-const challenger2Guess = document.querySelector(".challenger-2-guess");
-const challenger2GuessValue = document.querySelector("#challenger-2-guess");
-const challenger2NameValue = document.querySelector("#challenger-2-name");
+const challenger1GuessDisplay = document.querySelector(".challenger-1-guess");
+const challenger1GuessField = document.querySelector("#challenger-1-guess");
+const challenger1NameDisplay = document.querySelector(".challenger-1");
+const challenger1NameField = document.querySelector("#challenger-1-name");
+const challenger2GuessDisplay = document.querySelector(".challenger-2-guess");
+const challenger2GuessField = document.querySelector("#challenger-2-guess");
+const challenger2NameDisplay = document.querySelector(".challenger-2");
+const challenger2NameField = document.querySelector("#challenger-2-name");
+
 const guessHelpText = document.querySelectorAll(".guess-help-text");
 const inputs = document.querySelectorAll(".input-challenger");
 var minMaxError = document.querySelector(".error-box");
@@ -24,8 +25,10 @@ const updateButton = document.querySelector(".update-button");
 // || GAME CLASS and Initialization of currentGame || //
 class Game {
   constructor(){
-    this.challenger1 = '';
-    this.challenger2 = '';
+    this.challenger1Name = '';
+    this.challenger2Name = '';
+    this.challenger1GuessValue = null;
+    this.challenger2GuessValue = null;
     this.curMax = 100;
     this.curMin = 1;
     this.currentCorrectNumber = 0;
@@ -86,17 +89,25 @@ function updateMinMax(){
   currentGame.newRandomNumber(currentGame.curMin,currentGame.curMax);
 }
 
+function updateGuess(){
+  currentGame.challenger1GuessValue = parseInt(challenger1GuessField.value);
+  currentGame.challenger2GuessValue = parseInt(challenger2GuessField.value);
+}
+
+function updateChallengerNames(){
+  currentGame.challenger1Name = challenger1NameField.value;
+  currentGame.challenger2Name = challenger2NameField.value;
+}
+
 // NEED COMMENTS HERE
 function submitGuess() {
+  challenger1NameDisplay.innerHTML = currentGame.challenger1Name;
+  challenger2NameDisplay.innerHTML = currentGame.challenger2Name;
+  challenger1GuessDisplay.innerHTML = currentGame.challenger1GuessValue;
+  challenger2GuessDisplay.innerHTML = currentGame.challenger2GuessValue;
   currentGame.increaseGuessCounter();
-  challenger1.innerHTML = challenger1NameValue.value;
-  challenger2.innerHTML = challenger2NameValue.value;
-  currentGame.challenger1 = challenger1NameValue.value;
-  currentGame.challenger2 = challenger2NameValue.value;
-  challenger1Guess.innerHTML = challenger1GuessValue.value;
-  challenger2Guess.innerHTML = challenger2GuessValue.value;
   checkFormInputs();
-  var challengerGuesses = [challenger1GuessValue, challenger2GuessValue];
+  var challengerGuesses = [currentGame.challenger1GuessValue, currentGame.challenger2GuessValue];
   checkGuess(challengerGuesses);
   if(currentGame.hasBeenWon==true){
     gameWon();
@@ -109,7 +120,7 @@ function submitGuess() {
 //Check Guess checks the challengers guesses and iterates through the array. Then the
 function checkGuess(challengerGuesses) {
   for (var i = 0; i < challengerGuesses.length; i++) {
-    var challengerValue = parseInt(challengerGuesses[i].value);
+    var challengerValue = challengerGuesses[i];
     if (challengerValue < currentGame.currentCorrectNumber) {
       guessHelpText[i].innerHTML = "that's too low";
     } else if (challengerValue > currentGame.currentCorrectNumber) {
@@ -247,7 +258,11 @@ inputs.forEach((input) => addEventListener("input", checkFormInputs));
 clearFormButton.addEventListener("click", function() {
   clearForm(inputs);
 });
-submitButton.addEventListener("click", submitGuess);
+submitButton.addEventListener("click", function() {
+  updateGuess();
+  updateChallengerNames()
+  submitGuess();
+});
 updateButton.addEventListener("click", updateMinMax);
 
 // || ON WINDOW LOAD || //
