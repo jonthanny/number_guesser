@@ -2,9 +2,10 @@ class Game {
   constructor(){
     this.curMin = 1;
     this.curMax = 100;
-    this.startTime = 0;
-    this.endTime = 1;
-    this.timeElapsed = 0;
+    this.startTime = null;
+    this.endTime = null;
+    this.timeElapsedMinutes = 0;
+    this.timeElapsedSeconds = 0;
     this.currentCorrectNumber = 0;
     this.gameIndex = 0;
     this.challenger1 = '';
@@ -12,8 +13,14 @@ class Game {
     this.winner = '';
     this.guessCount = 0;
   }
+  logStartTime(){
+    //update this with a new Date()
+  }
+  logEndTime(){
+    //update this with a new Date()
+  }
   timeElapse(){
-    this.timeElapsed = this.endTime-this.startTime;
+    //update this with a new Date()
   }
   newRandomNumber(min,max){
     this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -70,6 +77,7 @@ function submitGuess() {
   checkGuess(challengerGuesses);
   clearForm(challengerGuesses);
   checkFormInputs();
+  currentGame.logStartTime();
 }
 
 function increaseGuessCounter() {
@@ -102,6 +110,7 @@ function checkGuess(challengerGuesses) {
 //+Initialize new game populate challengers from last game RND 2
 function gameWon(){
   addCard();
+  currentGame.logEndTime();
   currentGame = new Game;
 }
 
