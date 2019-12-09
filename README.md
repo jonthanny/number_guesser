@@ -1,5 +1,3 @@
-//Unit test descriptions
-# Intro to Unit Testing with JavaScript
-
-Directions: in your local directory npm install
-use npm test main-test.js to use tests
+# Number Guesser
+Project By: Lane Hunter and Erik Raith
+Try to guess the number!
