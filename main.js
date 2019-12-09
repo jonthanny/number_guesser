@@ -4,18 +4,16 @@ class Game {
     this.challenger2='';
     this.curMax = 100;
     this.curMin = 1;
-    this.startTime = null;
-    this.endTime = null;
-    this.timeElapsedMinutes = 0;
-    this.timeElapsedSeconds = 0;
     this.currentCorrectNumber = 0;
-    this.endTime = 1;
-    this.gameIndex = 0;
     this.currentGameNumber=0;
+    this.endTime = null;
+    this.gameIndex = 0;
     this.guessCount = 0;
     this.hasBeenWon=false;
-    this.startTime = 0;
+    this.startTime = null;
     this.timeElapsed=0;
+    this.timeElapsedMinutes = 0;
+    this.timeElapsedSeconds = 0;
     this.winner='';
   }
   logStartTime(){
@@ -32,7 +30,7 @@ class Game {
     var timeElapsed = this.endTime-this.startTime;
     timeElapsed /= 1000;
     this.timeElapsedMinutes= Math.floor(timeElapsed/60);
-    this.timeElapsedSeconds= timeElapsed - (this.timeElapsedMinutes *60);
+    this.timeElapsedSeconds= Math.trunc(timeElapsed - (this.timeElapsedMinutes *60));
   }
   newRandomNumber(min,max){
     this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
