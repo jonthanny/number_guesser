@@ -5,10 +5,11 @@ class Game {
     this.curMax = 100;
     this.curMin = 1;
     this.currentCorrectNumber = 0;
-    this.currentGameNumber = 0;
+
     this.endTime = 1;
     this.gameIndex = 0;
     this.guessCount = 0;
+    this.hasBeenWon=false;
     this.startTime = 0;
     this.timeElapsed = 0;
     this.winner = '';
@@ -71,6 +72,9 @@ function submitGuess() {
   challenger2Guess.innerHTML = challenger2GuessValue.value;
   var challengerGuesses = [challenger1GuessValue, challenger2GuessValue];
   checkGuess(challengerGuesses);
+  if(currentGame.hasBeenWon==true){
+    gameWon();
+  }
   clearForm(challengerGuesses);
   checkFormInputs();
 }
@@ -81,20 +85,20 @@ function increaseGuessCounter() {
 
 //Check Guess checks the challengers guesses and iterates through the array. Then the
 function checkGuess(challengerGuesses) {
-  for(var i=0; i<challengerGuesses.length; i++){
+  for (var i = 0; i < challengerGuesses.length; i++) {
     var challengerValue = parseInt(challengerGuesses[i].value);
-    if(challengerValue<currentGame.currentCorrectNumber){
+    if (challengerValue < currentGame.currentCorrectNumber) {
       guessHelpText[i].innerHTML = "that's too low";
     } else if (challengerValue > currentGame.currentCorrectNumber) {
       guessHelpText[i].innerHTML = "that's too high";
-    } else {
+    } else if(challengerValue == currentGame.currentCorrectNumber){
+      currentGame.hasBeenWon = true;
       guessHelpText[i].innerHTML = "BOOM!";
-      if (i==0) {
-         currentGame.winner=challenger1NameValue.value;
-      } else {
-        currentGame.winner=challenger2NameValue.value;
-      };
-      gameWon();
+      if (i == 0) {
+        currentGame.winner = challenger1NameValue.value;
+      } else if(i==1){
+        currentGame.winner = challenger2NameValue.value;
+      }
     }
   }
 }
@@ -105,7 +109,7 @@ function checkGuess(challengerGuesses) {
 //+Initialize new game populate challengers from last game RND 2
 function gameWon(){
   addCard();
-  currentGame.increaseCurrentGame();
+  currentGame.newRandomNumber(1,100);
 }
 
 function addCard(){
