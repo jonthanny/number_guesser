@@ -193,7 +193,7 @@ function checkMinMaxInputs(inputsToCheck,button){
     if (inputsToCheck[i].value.length == 0) {
       canSubmit = false;
     }
-    if (inputsToCheck[1].value < inputsToCheck[0].value && inputsToCheck[1].value.length > 0) {
+    if (inputsToCheck[1].value <= inputsToCheck[0].value && inputsToCheck[1].value.length > 0) {
       canSubmit = false;
       minMaxError.classList.add("error-box-show");
     } else {
