@@ -38,6 +38,9 @@ class Game {
   increaseCurrentGame(){
     this.currentGameNumber= this.currentGameNumber + 1;
   }
+  increaseGuessCounter() {
+    currentGame.guessCount = currentGame.guessCount + 2;
+  }
 }
 //Challenger Varibales Could be combined to a class
 const challenger1 = document.querySelector(".challenger-1");
@@ -72,13 +75,10 @@ function updateMinMax(){
   maxElement.innerHTML =currentGame.curMax;
   currentGame.newRandomNumber(currentGame.curMin,currentGame.curMax);
 }
-//Depreciated in Refactor of Game to Class
-// function resetGame(min,max) {
-//   correctGuess = Math.floor(Math.random() * (max - min + 1)) + min;
-// }
 
+//
 function submitGuess() {
-  increaseGuessCounter();
+  currentGame.increaseGuessCounter();
   challenger1.innerHTML = challenger1NameValue.value;
   challenger2.innerHTML = challenger2NameValue.value;
   currentGame.challenger1 = challenger1NameValue.value;
@@ -96,29 +96,8 @@ function submitGuess() {
   currentGame.logStartTime();
 }
 
-function increaseGuessCounter() {
-  currentGame.guessCount = currentGame.guessCount + 2;
-}
 
-//Check Guess checks the challengers guesses and iterates through the array. Then the
-function checkGuess(challengerGuesses) {
-  for (var i = 0; i < challengerGuesses.length; i++) {
-    var challengerValue = parseInt(challengerGuesses[i].value);
-    if (challengerValue < currentGame.currentCorrectNumber) {
-      guessHelpText[i].innerHTML = "that's too low";
-    } else if (challengerValue > currentGame.currentCorrectNumber) {
-      guessHelpText[i].innerHTML = "that's too high";
-    } else if(challengerValue == currentGame.currentCorrectNumber){
-      currentGame.hasBeenWon = true;
-      guessHelpText[i].innerHTML = "BOOM!";
-      if (i == 0) {
-        currentGame.winner = challenger1NameValue.value;
-      } else if(i==1){
-        currentGame.winner = challenger2NameValue.value;
-      }
-    }
-  }
-}
+
 
 //What happens when the game is won?
 //+update currentGame
@@ -167,6 +146,27 @@ function closeCard(gameNumber){
   var el =document.getElementById(`gameNumber${gameNumber}`);
   el.remove();
 }
+
+//Check Guess checks the challengers guesses and iterates through the array. Then the
+function checkGuess(challengerGuesses) {
+  for (var i = 0; i < challengerGuesses.length; i++) {
+    var challengerValue = parseInt(challengerGuesses[i].value);
+    if (challengerValue < currentGame.currentCorrectNumber) {
+      guessHelpText[i].innerHTML = "that's too low";
+    } else if (challengerValue > currentGame.currentCorrectNumber) {
+      guessHelpText[i].innerHTML = "that's too high";
+    } else if(challengerValue == currentGame.currentCorrectNumber){
+      currentGame.hasBeenWon = true;
+      guessHelpText[i].innerHTML = "BOOM!";
+      if (i == 0) {
+        currentGame.winner = challenger1NameValue.value;
+      } else if(i==1){
+        currentGame.winner = challenger2NameValue.value;
+      }
+    }
+  }
+}
+
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
