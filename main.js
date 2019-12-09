@@ -170,6 +170,7 @@ function closeCard(gameNumber){
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
+  console.log("checking form inputs")
   checkClearFormButtonInputs();
   checkButtonInputs(inputs,submitButton);
   checkMinMaxInputs([minInput,maxInput],updateButton);
@@ -177,7 +178,7 @@ function checkFormInputs() {
 }
 
 //Checks the associated button form to make sure the input has something in it
-function checkButtonInputs(inputsToCheck,button){
+function checkButtonInputs(inputsToCheck, button, buttonName){
   var canSubmit = true;
   for (var i = 0; i < inputsToCheck.length; i++) {
     if (inputsToCheck[i].value.length == 0) {
@@ -189,24 +190,27 @@ function checkButtonInputs(inputsToCheck,button){
 
 function checkMinMaxInputs(inputsToCheck,button){
   var canSubmit = true;
+  var minInputValue = parseInt(inputsToCheck[0].value)
+  var maxInputValue = parseInt(inputsToCheck[1].value)
+
   for (var i = 0; i < inputsToCheck.length; i++) {
     if (inputsToCheck[i].value.length == 0) {
       canSubmit = false;
     }
-    if (inputsToCheck[1].value <= inputsToCheck[0].value && inputsToCheck[1].value.length > 0) {
-      canSubmit = false;
-      minMaxError.classList.add("error-box-show");
-      maxInput.classList.add("error-border");
-    } else {
-      minMaxError.classList.remove("error-box-show")
-      maxInput.classList.remove("error-border");
-
-    }
     if (isNaN(inputsToCheck[i].value) == true) {
       canSubmit = false;
     }
+    button.disabled = !canSubmit;
   }
-  button.disabled = !canSubmit;
+  if (maxInputValue <= minInputValue && maxInputValue > 0) {
+    canSubmit = false;
+    minMaxError.classList.add("error-box-show");
+    maxInput.classList.add("error-border");
+  } else {
+    minMaxError.classList.remove("error-box-show")
+    maxInput.classList.remove("error-border");
+  }
+
 }
 
 //Checks the associated button form to make sure the input has something in it
