@@ -9,7 +9,7 @@ const challenger2NameDisplay = document.querySelector(".challenger-2");
 const challenger2NameField = document.querySelector("#challenger-2-name");
 
 const guessHelpText = document.querySelectorAll(".guess-help-text");
-const challengerInputs = document.querySelectorAll(".input-challenger");
+const challengerInputFields = document.querySelectorAll(".input-challenger");
 var minMaxError = document.querySelector(".error-box");
 var maxElement = document.querySelector("#max-range-num");
 const maxInput = document.querySelector("#max-input-range");
@@ -193,7 +193,7 @@ function clearForm(clearInputs) {
     clearInputs[i].value = "";
   }
   clearFormButton.disabled = true;
-  enableSubmitButton(challengerInputs, submitButton)
+  enableSubmitButton(challengerInputFields, submitButton)
 }
 
 // || VALIDATION FUNCTIONS || //
@@ -201,7 +201,7 @@ function clearForm(clearInputs) {
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
   enableClearButton();
-  enableSubmitButton(challengerInputs, submitButton);
+  enableSubmitButton(challengerInputFields, submitButton);
   checkValidMinMaxInput([minInput, maxInput]);
   enableUpdateButton([minInput, maxInput], updateButton);
 }
@@ -234,8 +234,8 @@ function enableUpdateButton(inputsToCheck, button) {
 //Checks the associated button form to make sure the input has something in it
 function enableClearButton(){
   var canClear = false;
-  for (var i = 0; i < challengerInputs.length; i++) {
-    if (challengerInputs[i].value.length != 0 && canClear==false) {
+  for (var i = 0; i < challengerInputFields.length; i++) {
+    if (challengerInputFields[i].value.length != 0 && canClear==false) {
       canClear = true;
     }
   }
@@ -258,9 +258,9 @@ function checkValidMinMaxInput(inputsToCheck) {
 
 
 // || EVENT LISTENERS || //
-challengerInputs.forEach((input) => addEventListener("input", checkFormInputs));
+challengerInputFields.forEach((input) => addEventListener("input", checkFormInputs));
 clearFormButton.addEventListener("click", function() {
-  clearForm(challengerInputs);
+  clearForm(challengerInputFields);
 });
 submitButton.addEventListener("click", function() {
   updateGuess();
