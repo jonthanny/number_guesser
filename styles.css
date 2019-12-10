@@ -28,8 +28,35 @@ main {
   height: 100vh;
 }
 
-section {
+#subtitle h2{
+  position:relative;
+  font-size: 22px;
+  text-align: center;
+  padding-left: 10px;
+  border:1px solid;
 }
+
+#subtitle h2:before,
+#subtitle h2:after {
+  position:absolute;
+  top:51%;
+  width:20%;
+  background-color: red;
+  content:'\a0';
+  height:1px;
+  border:1px solid;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+#subtitle h2:before {
+  margin-right: 50%;
+}
+
+#subtitle h2:before {
+  margin-left: -23%;
+}
+
 
 /* || Text Formatting*/
 .previous-game-card h1{
