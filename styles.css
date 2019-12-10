@@ -39,7 +39,7 @@ main {
   font-size: 18px;
   font-weight: 300;
   text-align: center;
-  padding-left: 10px;
+
 }
 
 .title-container h2:before,
@@ -56,7 +56,7 @@ main {
   margin-left: calc(-20% - 10px);
 }
 
-#subtitle h2:after {
+.title-container h2:after {
   margin-left: 10px;
 }
 
