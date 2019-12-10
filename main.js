@@ -10,9 +10,9 @@ var challenger2NameField = document.querySelector("#challenger-2-name");
 var guessHelpTextFields = document.querySelectorAll(".guess-help-text");
 var challengerInputFields = document.querySelectorAll(".input-challenger");
 var minMaxError = document.querySelector(".error-box");
-var maxDisplay = document.querySelector("#max-range-num");
+var maxDisplay = document.querySelector("#max-display");
 var maxNumField = document.querySelector("#max-input-range");
-var minDisplay = document.querySelector("#min-range-num");
+var minDisplay = document.querySelector("#min-display");
 var minNumField = document.querySelector("#min-input-range");
 // || Buttons || //
 var clearFormButton = document.querySelector("#clear-form-button");
