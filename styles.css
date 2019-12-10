@@ -12,6 +12,8 @@
 }
 
 header {
+  display:flex;
+  justify-content: center;
   background-color: #404041;
   height: 120px;
   color: white;
@@ -27,13 +29,18 @@ main {
   flex-flow: row;
   height: 100vh;
 }
-
+.title-container{
+  display:flex;
+  flex-direction: column;
+  width:440px;
+  overflow: hidden;
+}
 #subtitle h2{
   position:relative;
-  font-size: 22px;
+  font-size: 18px;
+  font-weight: 300;
   text-align: center;
   padding-left: 10px;
-  border:1px solid;
 }
 
 #subtitle h2:before,
@@ -41,22 +48,18 @@ main {
   position:absolute;
   top:51%;
   width:20%;
-  background-color: red;
+  background-color: white;
   content:'\a0';
   height:1px;
-  border:1px solid;
-  padding-left: 10px;
-  padding-right: 10px;
-
-}
-#subtitle h2:before {
-  margin-right: 50%;
 }
 
 #subtitle h2:before {
-  margin-left: -23%;
+  margin-left: calc(-20% - 10px);
 }
 
+#subtitle h2:after {
+  margin-left: 10px;
+}
 
 /* || Text Formatting*/
 .previous-game-card h1{
