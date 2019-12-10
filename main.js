@@ -22,7 +22,7 @@ var updateButton = document.querySelector(".update-button");
 
 // || GAME CLASS and Initialization of currentGame || //
 class Game {
-  varructor(){
+  constructor(){
     this.challenger1GuessValue = null;
     this.challenger1Name = '';
     this.challenger2GuessValue = null;
@@ -60,6 +60,10 @@ class Game {
     timeElapsed /= 1000;
     this.timeElapsedMinutes= Math.floor(timeElapsed / 60);
     this.timeElapsedSeconds= Math.trunc(timeElapsed - (this.timeElapsedMinutes * 60));
+    if (this.timeElapsedMinutes > 1000){
+      this.timeElapsedMinutes = 0;
+      this.timeElapsedSeconds = 0;
+    }
   }
   newRandomNumber(min, max) {
     this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -74,7 +78,11 @@ class Game {
     this.hasBeenWon = false;
     this.guessCount = 0;
     this.hasStarted = false;
-    this.newRandomNumber(curMin, curMax);
+    // this.newRandomNumber(curMin, curMax);
+  }
+  increaseRange(){
+    this.curMin = this.curMin - 10;
+    this.curMax = this.curMax + 10;
   }
 }
 
@@ -85,8 +93,14 @@ var currentGame = new Game;
 //Updates min and max visually
 //Passes minValue and maxValue as arguments to resetGame
 function updateMinMax() {
-  currentGame.curMin = parseInt(minNumField.value);
-  currentGame.curMax = parseInt(maxNumField.value);
+  if(minNumField.value != ""){
+    currentGame.curMin = parseInt(minNumField.value);
+    currentGame.curMax = parseInt(maxNumField.value);
+  } else {
+    currentGame.curMin = currentGame.curMin - 10;
+    currentGame.curMax = currentGame.curMax + 10;
+
+  }
   minDisplay.innerHTML = currentGame.curMin;
   maxDisplay.innerHTML = currentGame.curMax;
   currentGame.newRandomNumber(currentGame.curMin, currentGame.curMax);
@@ -145,6 +159,8 @@ function gameWon() {
   currentGame.increaseCurrentGame();
   currentGame.reset(currentGame.curMin,currentGame.curMin);
   checkFormInputs();
+  // currentGame.increaseRange();
+  updateMinMax();
 }
 
 // NEED COMMENTS HERE
