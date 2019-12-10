@@ -20,7 +20,7 @@ main {
   flex-flow: row;
   height: 100vh;
 }
-.title-container{
+.title-container {
   display:flex;
   flex-direction: column;
   width:440px;

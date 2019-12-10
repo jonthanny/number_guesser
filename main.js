@@ -14,6 +14,7 @@ var maxDisplay = document.querySelector("#max-display");
 var maxNumField = document.querySelector("#max-input-range");
 var minDisplay = document.querySelector("#min-display");
 var minNumField = document.querySelector("#min-input-range");
+var inputContainer = document.querySelector(".input-container");
 // || Buttons || //
 var clearFormButton = document.querySelector("#clear-form-button");
 var resetButton = document.querySelector("#reset-button");
@@ -203,34 +204,39 @@ function clearForm(clearInputs) {
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
+  if (event.target.classList.contains("min-max-input")) {
+    enableUpdateButton();
+    checkValidMinMaxInput([minNumField, maxNumField]);
+  }
+  if (event.target.classList.contains("input-challenger")) {
   enableClearButton();
-  enableSubmitButton(challengerInputFields, submitButton);
-  checkValidMinMaxInput([minNumField, maxNumField]);
-  enableUpdateButton([minNumField, maxNumField], updateButton);
+  enableSubmitButton(challengerInputFields);
+  }
 }
 
 //Checks the associated button form to make sure the input has something in it
-function enableSubmitButton(inputsToCheck, button) {
+function enableSubmitButton(inputsToCheck) {
   var canSubmit = true;
   for (var i = 0; i < inputsToCheck.length; i++) {
     if (inputsToCheck[i].value.length == 0) {
       canSubmit = false;
     }
   }
-  button.disabled = !canSubmit;
+  submitButton.disabled = !canSubmit;
 }
 
 //
-function enableUpdateButton(inputsToCheck, button) {
+function enableUpdateButton() {
   var canSubmit = true;
-  for (var i = 0; i < inputsToCheck.length; i++) {
-    if (inputsToCheck[i].value.length == 0) {
+  var minMaxInputs = [minNumField, maxNumField]
+  for (var i = 0; i < minMaxInputs.length; i++) {
+    if (minMaxInputs[i].value.length == 0) {
       canSubmit = false;
     }
-    if (isNaN(inputsToCheck[i].value) == true) {
+    if (isNaN(minMaxInputs[i].value) == true) {
       canSubmit = false;
     }
-    button.disabled = !canSubmit;
+    updateButton.disabled = !canSubmit;
   }
 }
 
@@ -249,8 +255,8 @@ function enableClearButton() {
 function checkValidMinMaxInput(inputsToCheck) {
   var minInputValue = parseInt(inputsToCheck[0].value)
   var maxInputValue = parseInt(inputsToCheck[1].value)
-  if (maxInputValue <= minInputValue && maxInputValue > 0) {
-    canSubmit = false;
+  if (maxInputValue <= minInputValue && maxNumField.value.length > 0) {
+    updateButton.disabled = true;
     minMaxError.classList.add("error-box-show");
     maxNumField.classList.add("error-border");
   } else {
@@ -265,6 +271,7 @@ challengerInputFields.forEach((input) => addEventListener("input", checkFormInpu
 clearFormButton.addEventListener("click", function() {
   clearForm(challengerInputFields);
 });
+inputContainer.addEventListener("input", checkFormInputs)
 submitButton.addEventListener("click", function() {
   updateGuess();
   updateChallengerNames();
