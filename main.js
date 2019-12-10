@@ -15,6 +15,7 @@ var maxNumField = document.querySelector("#max-input-range");
 var minDisplay = document.querySelector("#min-display");
 var minNumField = document.querySelector("#min-input-range");
 var inputContainer = document.querySelector(".input-container");
+var challengerContainer = document.querySelector(".challenger-card");
 // || Buttons || //
 var clearFormButton = document.querySelector("#clear-form-button");
 var resetButton = document.querySelector("#reset-button");
@@ -197,22 +198,25 @@ function clearForm(clearInputs) {
     clearInputs[i].value = "";
   }
   clearFormButton.disabled = true;
-  enableSubmitButton(challengerInputFields, submitButton)
+  enableSubmitButton(challengerInputFields);
+}
+
+function submitHelper() {
+  updateGuess();
+  updateChallengerNames();
+  submitGuess();
 }
 
 // || VALIDATION FUNCTIONS || //
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
-  if (event.target.classList.contains("min-max-input")) {
-    enableUpdateButton();
-    checkValidMinMaxInput([minNumField, maxNumField]);
-  }
-  if (event.target.classList.contains("input-challenger")) {
+  enableUpdateButton();
+  checkValidMinMaxInput([minNumField, maxNumField]);
   enableClearButton();
   enableSubmitButton(challengerInputFields);
-  }
 }
+
 
 //Checks the associated button form to make sure the input has something in it
 function enableSubmitButton(inputsToCheck) {
@@ -267,20 +271,15 @@ function checkValidMinMaxInput(inputsToCheck) {
 
 
 // || EVENT LISTENERS || //
+inputContainer.addEventListener("input", checkFormInputs);
 challengerInputFields.forEach((input) => addEventListener("input", checkFormInputs));
 clearFormButton.addEventListener("click", function() {
   clearForm(challengerInputFields);
 });
-inputContainer.addEventListener("input", checkFormInputs)
-submitButton.addEventListener("click", function() {
-  updateGuess();
-  updateChallengerNames();
-  submitGuess();
-});
+submitButton.addEventListener("click",  submitHelper);
 updateButton.addEventListener("click", updateMinMax);
 
 // || ON WINDOW LOAD || //
 window.onload = function() {
   currentGame.newRandomNumber(currentGame.curMin,currentGame.curMax);
-  checkFormInputs();
 }
