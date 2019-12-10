@@ -6,20 +6,13 @@
   box-sizing: border-box;
 }
 
-#main-logo-line {
-  font-size: 50px;
-  color: #dd1972;
-}
-
 header {
+  display:flex;
+  justify-content: center;
   background-color: #404041;
   height: 120px;
   color: white;
   text-align: center;
-}
-
-.logo-emphasis {
-  font-weight: 800;
 }
 
 main {
@@ -27,8 +20,44 @@ main {
   flex-flow: row;
   height: 100vh;
 }
+.title-container{
+  display:flex;
+  flex-direction: column;
+  width:440px;
+  overflow: hidden;
+}
+.title-container h1 {
+  font-size: 50px;
+  color: #dd1972;
+}
+.logo-emphasis {
+  font-weight: 800;
+}
 
-section {
+.title-container h2{
+  position:relative;
+  font-size: 18px;
+  font-weight: 300;
+  text-align: center;
+
+}
+
+.title-container h2:before,
+.title-container h2:after {
+  position:absolute;
+  top:51%;
+  width:20%;
+  background-color: white;
+  content:'\a0';
+  height:1px;
+}
+
+.title-container h2:before {
+  margin-left: calc(-20% - 10px);
+}
+
+.title-container h2:after {
+  margin-left: 10px;
 }
 
 /* || Text Formatting*/
