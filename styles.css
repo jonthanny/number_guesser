@@ -6,11 +6,6 @@
   box-sizing: border-box;
 }
 
-#main-logo-line {
-  font-size: 50px;
-  color: #dd1972;
-}
-
 header {
   display:flex;
   justify-content: center;
@@ -18,10 +13,6 @@ header {
   height: 120px;
   color: white;
   text-align: center;
-}
-
-.logo-emphasis {
-  font-weight: 800;
 }
 
 main {
@@ -35,7 +26,15 @@ main {
   width:440px;
   overflow: hidden;
 }
-#subtitle h2{
+.title-container h1 {
+  font-size: 50px;
+  color: #dd1972;
+}
+.logo-emphasis {
+  font-weight: 800;
+}
+
+.title-container h2{
   position:relative;
   font-size: 18px;
   font-weight: 300;
@@ -43,8 +42,8 @@ main {
   padding-left: 10px;
 }
 
-#subtitle h2:before,
-#subtitle h2:after {
+.title-container h2:before,
+.title-container h2:after {
   position:absolute;
   top:51%;
   width:20%;
@@ -53,7 +52,7 @@ main {
   height:1px;
 }
 
-#subtitle h2:before {
+.title-container h2:before {
   margin-left: calc(-20% - 10px);
 }
 
