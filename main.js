@@ -15,7 +15,7 @@ var maxNumField = document.querySelector("#max-input-range");
 var minDisplay = document.querySelector("#min-display");
 var minNumField = document.querySelector("#min-input-range");
 var inputContainer = document.querySelector(".input-container");
-// || Buttons || //
+// || Buttons  //
 var clearFormButton = document.querySelector("#clear-form-button");
 var resetButton = document.querySelector("#reset-button");
 var submitButton = document.querySelector("#submit-button");
@@ -66,19 +66,25 @@ class Game {
       this.timeElapsedSeconds = 0;
     }
   }
+  //Creates a new Random Number
   newRandomNumber(min, max) {
     this.currentCorrectNumber = Math.floor(Math.random() * (max - min + 1)) + min;
   }
+  //Increases the current game number by one.
   increaseCurrentGame() {
     this.currentGameNumber = this.currentGameNumber + 1;
   }
+  //Increases the guess counter by two.
   increaseGuessCounter() {
     this.guessCount = this.guessCount + 2;
   }
+  //On a gameWon call this will modify the current game instance min and max.
   increaseGuessRange(){
     this.curMin = this.curMin - 10;
     this.curMax = this.curMax + 10;
   }
+  //Unlike a reset restart keeps the previous min and max values. Future
+  //development will need to be used for a hardReset. Zeroing out the game element.
   restart() {
     this.hasBeenWon = false;
     this.guessCount = 0;
@@ -87,6 +93,7 @@ class Game {
   }
 }
 
+//Now that the CLASS is defined we start a new instance.
 var currentGame = new Game;
 
 // || GAME FUNCTIONS || //
@@ -105,26 +112,32 @@ function updateMinMaxDisplay() {
   maxDisplay.innerHTML = currentGame.curMax;
 }
 
+//Updates the game object instance with the current input guess
 function updateGuess() {
   currentGame.challenger1GuessValue = parseInt(challenger1GuessField.value);
   currentGame.challenger2GuessValue = parseInt(challenger2GuessField.value);
 }
 
+//Updates the DOM tree with the currentGuessValue.
 function updateGuessDisplay() {
   challenger1GuessDisplay.innerHTML = currentGame.challenger1GuessValue;
   challenger2GuessDisplay.innerHTML = currentGame.challenger2GuessValue;
 }
 
+//Updates the game object instance with the current input challengerNames
 function updateChallengerNames() {
   currentGame.challenger1Name = challenger1NameField.value;
   currentGame.challenger2Name = challenger2NameField.value;
 }
 
+//Updates the DOM tree with the current Challenger Name.
 function updateChallengerNamesDisplay() {
   challenger1NameDisplay.innerHTML = currentGame.challenger1Name;
   challenger2NameDisplay.innerHTML = currentGame.challenger2Name;
 }
 
+//This function runs everything that needs to run when the submitButton is clicked.
+//NOTE we log the startTime of the game at this point. This can result in a zero second game
 function submitHelper() {
   updateGuess();
   updateGuessDisplay();
@@ -158,7 +171,8 @@ function checkGuess(challengerGuesses) {
   }
 }
 
-//What happens when the game is won?
+//This is another function that is a collection. It includes all of the functions
+// that need to be called when a game is won.
 function gameWon() {
   currentGame.logEndTime();
   addCard();
@@ -169,7 +183,10 @@ function gameWon() {
   checkFormInputs();
 }
 
-// NEED COMMENTS HERE
+//addCard modifies the DOM by appending a card element to the parent DIV.
+//We can refactor this to simplify the eventlistener and instead attach it to the parent
+// section. As of right now, the eventlistener button is given a matching gameNumber.
+//Refactor this.
 function addCard() {
   var el = document.createElement('div');
   var domString =`<div class="previous-game-card" id="gameNumber${currentGame.currentGameNumber}">
@@ -200,7 +217,7 @@ function addCard() {
   });
 }
 
-// NEED COMMENTS HERE
+// This function removes the targeted element from the DOM
 function closeCard(gameNumber) {
   //get card from eventlistener onclick and use that number to find the associated Card ID
   var el = document.getElementById(`gameNumber${gameNumber}`);
@@ -208,7 +225,7 @@ function closeCard(gameNumber) {
 }
 
 // || UTILITY FUNCTIONS || //
-// NEED COMMENTS HERE
+// ClearForm takes any nodeList and will clear the input fields.
 function clearForm(clearInputs) {
   for (var i = 0; i < clearInputs.length; i++) {
     clearInputs[i].value = "";
@@ -217,18 +234,15 @@ function clearForm(clearInputs) {
   enableSubmitButton(challengerInputFields);
 }
 
-
-
 // || VALIDATION FUNCTIONS || //
 // checkFormInputs() is called whenever a input field is changed.
 // This enables and disables the submitButton and clearFormButton variables
 function checkFormInputs() {
-  enableUpdateButton();
+  enableUpdateButton([minNumField, maxNumField]);
   checkValidMinMaxInput([minNumField, maxNumField]);
   enableClearButton();
-  enableSubmitButton(challengerInputFields);
+  enableButton(challengerInputFields);
 }
-
 
 //Checks the associated button form to make sure the input has something in it
 function enableSubmitButton(inputsToCheck) {
@@ -241,10 +255,9 @@ function enableSubmitButton(inputsToCheck) {
   submitButton.disabled = !canSubmit;
 }
 
-//
-function enableUpdateButton() {
+//Checks the update button fields to enable the update button.
+function enableUpdateButton(minMaxInputs) {
   var canSubmit = true;
-  var minMaxInputs = [minNumField, maxNumField]
   for (var i = 0; i < minMaxInputs.length; i++) {
     if (minMaxInputs[i].value.length == 0) {
       canSubmit = false;
@@ -267,7 +280,7 @@ function enableClearButton() {
   clearFormButton.disabled = !canClear;
 }
 
-//
+//More stringent function to check that the input fields on updateButton are met after
 function checkValidMinMaxInput(inputsToCheck) {
   var minInputValue = parseInt(inputsToCheck[0].value)
   var maxInputValue = parseInt(inputsToCheck[1].value)
@@ -280,7 +293,6 @@ function checkValidMinMaxInput(inputsToCheck) {
     maxNumField.classList.remove("error-border");
   }
 }
-
 
 // || EVENT LISTENERS || //
 inputContainer.addEventListener("input", checkFormInputs);
