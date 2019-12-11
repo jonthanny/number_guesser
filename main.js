@@ -241,7 +241,7 @@ function checkFormInputs() {
   enableUpdateButton([minNumField, maxNumField]);
   checkValidMinMaxInput([minNumField, maxNumField]);
   enableClearButton();
-  enableButton(challengerInputFields);
+  enableSubmitButton(challengerInputFields);
 }
 
 //Checks the associated button form to make sure the input has something in it
