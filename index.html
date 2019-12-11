@@ -19,20 +19,20 @@
           <div class="set-range-input-flex">
             <div class="input-container">
               <p>Min Range</p>
-              <input type="text" name="Min Range" id="min-input-range" class="min-max-input">
+              <input type="number" name="Min Range" id="min-input-range" class="min-max-input">
               <div class="div-spacer">
                 -
               </div>
             </div>
             <div class="input-container">
               <p>Max Range</p>
-              <input type="text" name="Max Range" id="max-input-range" class="min-max-input">
+              <input type="number" name="Max Range" id="max-input-range" class="min-max-input">
               <div class="error-box">
                 <img class="error-icon "src="assets/error-icon.svg" alt="Error Icon" height="14px" width="14px">  Must be more than min
               </div>
             </div>
             <div class="input-container update-container">
-              <button class="update-button form-buttons" disabled>UPDATE</button>
+              <button class="update-button" disabled>UPDATE</button>
               <div class="div-spacer update">
                 -
               </div>
@@ -52,7 +52,7 @@
             </div>
             <div class="challenger-guess-container">
               <p>Guess</p>
-              <input type="text" name="guess-input-1" class="input-challenger" id="challenger-1-guess">
+              <input type="number" name="guess-input-1" class="input-challenger" id="challenger-1-guess">
             </div>
           </div>
           <h4>Challenger 2</h4>
@@ -63,13 +63,13 @@
             </div>
             <div class="challenger-guess-container">
               <p>Guess</p>
-              <input type="text" name="guess-input-2" class="input-challenger" id="challenger-2-guess">
+              <input type="number" name="guess-input-2" class="input-challenger" id="challenger-2-guess">
             </div>
           </div>
           <div class="challenger-button-container">
-            <button class="form-buttons challenger-button" id="submit-button"disabled>SUBMIT GUESS</button>
-            <button class="form-buttons challenger-button" id="reset-button" disabled>RESET GAME</button>
-            <button class="form-buttons challenger-button" id="clear-form-button"disabled>CLEAR FORM</button>
+            <button id="submit-button"disabled>SUBMIT GUESS</button>
+            <button id="reset-button" disabled>RESET GAME</button>
+            <button id="clear-form-button"disabled>CLEAR FORM</button>
           </div>
         </div>
        <div class="latest-guess-block left-cards">
