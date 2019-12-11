@@ -12,13 +12,6 @@ main {
   height: 100vh;
 }
 
-@media screen and (max-device-width:767px) {
-  main {
-    display: flex;
-    flex-flow: column;
-  }
-}
-
 .bold {
   color: #6e6e6e;
   font-weight: 700;
@@ -45,15 +38,15 @@ button:hover:enabled {
   transition-duration: 300ms;
 }
 
+/* Media */
+@media screen and (max-device-width:767px) {
+  main {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
 /* || HEADING Formatting */
-/* header {
-  background-color: #404041;
-  color: white;
-  display:flex;
-  height: 120px;
-  justify-content: center;
-  text-align: center;
-} */
 header {
   background-color: #404041;
   color: white;
@@ -140,31 +133,62 @@ input {
   width: 100%;
 }
 /* || Set Range Block */
+.input-container {
+  display: inline-block;
+  margin-right: 20px;
+  min-width: 193px;
+  width: 30%;
+}
+.set-range-input-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.update-container {
+  align-self: flex-end;
+  display: inline-block;
+  min-width: 0;
+  right: 40px;
+  width: 100px;
+}
+.update-button {
+  display: inline-block;
+  width: fit-content;
+}
 
-  .input-container {
-    display: inline-block;
-    margin-right: 20px;
-    min-width: 193px;
-    width: 30%;
-  }
-  .set-range-input-flex {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-  }
-  .update-container {
-    align-self: flex-end;
-    display: inline-block;
-    min-width: 0;
-    right: 40px;
-    width: 100px;
-  }
-  .update-button {
-    display: inline-block;
-    width: fit-content;
-  }
+.set-range-block {
+  display: flex;
+  flex-direction: column;
+}
 
+.set-range-block h4 {
+  align-self: flex-start;
+}
+
+.error-border {
+  border: 2px solid #dd1792;
+}
+
+.error-box {
+  color: #dd1792;
+  visibility: hidden;
+}
+
+.error-box-show {
+  color: #dd1792;
+  visibility: visible;
+}
+
+.error-icon {
+  margin-right: 5px;
+}
+
+.div-spacer {
+  visibility: hidden;
+}
+
+/*Media Section*/
 @media screen and (max-device-width:767px) {
   .input-container {
     display: inline-block;
@@ -189,42 +213,7 @@ input {
   }
 }
 
-.set-range-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.set-range-block h4 {
-  align-self: flex-start;
-}
-
-
-.error-border {
-  border: 2px solid #dd1792;
-}
-
-.error-box {
-  color: #dd1792;
-  visibility: hidden;
-}
-
-.error-box-show {
-  color: #dd1792;
-  visibility: visible;
-}
-
-.error-icon {
-  margin-right: 5px;
-}
-
-.div-spacer {
-  visibility: hidden;
-}
-
-
-
 /* || Challenger Block */
-
 .challenger-block {
   height: auto;
 }
@@ -255,6 +244,14 @@ input {
   margin-top: 25px;
   width: 100%;
 }
+
+#min-display,
+#max-display {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/*Media overrides*/
 @media screen and (max-device-width:767px) {
   .challenger-block {
     height: auto;
@@ -281,12 +278,6 @@ input {
     margin-top: 25px;
     width: 100%;
   }
-}
-
-#min-display,
-#max-display {
-  font-weight: bold;
-  text-decoration: underline;
 }
 
 /* || Latest Guess Block*/
