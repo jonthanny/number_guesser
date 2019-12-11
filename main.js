@@ -75,11 +75,15 @@ class Game {
   increaseGuessCounter() {
     this.guessCount = this.guessCount + 2;
   }
-  reset(curMin, curMax) {
+  increaseGuessRange(){
+    this.curMin = this.curMin - 10;
+    this.curMax = this.curMax + 10;
+  }
+  restart() {
     this.hasBeenWon = false;
     this.guessCount = 0;
     this.hasStarted = false;
-    this.newRandomNumber(curMin, curMax);
+    this.newRandomNumber(this.curMin,this.curMax);
   }
 }
 
@@ -90,8 +94,10 @@ var currentGame = new Game;
 //Updates min and max visually
 //Passes minValue and maxValue as arguments to resetGame
 function updateMinMax() {
-  currentGame.curMin = parseInt(minNumField.value);
-  currentGame.curMax = parseInt(maxNumField.value);
+  if(!isNaN(parseInt(minNumField.value)) || !isNaN(parseInt(maxNumField.value))){
+    currentGame.curMin = parseInt(minNumField.value);
+    currentGame.curMax = parseInt(maxNumField.value);
+  }
   minDisplay.innerHTML = currentGame.curMin;
   maxDisplay.innerHTML = currentGame.curMax;
   currentGame.newRandomNumber(currentGame.curMin, currentGame.curMax);
@@ -148,7 +154,9 @@ function gameWon() {
   currentGame.logEndTime();
   addCard();
   currentGame.increaseCurrentGame();
-  currentGame.reset(currentGame.curMin,currentGame.curMin);
+  currentGame.increaseGuessRange();
+  currentGame.restart();
+  updateMinMax();
   checkFormInputs();
 }
 
