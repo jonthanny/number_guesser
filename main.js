@@ -94,13 +94,15 @@ var currentGame = new Game;
 //Updates min and max visually
 //Passes minValue and maxValue as arguments to resetGame
 function updateMinMax() {
-  if(!isNaN(parseInt(minNumField.value)) || !isNaN(parseInt(maxNumField.value))){
-    currentGame.curMin = parseInt(minNumField.value);
-    currentGame.curMax = parseInt(maxNumField.value);
-  }
+  currentGame.curMin = parseInt(minNumField.value);
+  currentGame.curMax = parseInt(maxNumField.value);
+  updateMinMaxDisplay();
+  currentGame.newRandomNumber(currentGame.curMin, currentGame.curMax);
+}
+
+function updateMinMaxDisplay(){
   minDisplay.innerHTML = currentGame.curMin;
   maxDisplay.innerHTML = currentGame.curMax;
-  currentGame.newRandomNumber(currentGame.curMin, currentGame.curMax);
 }
 
 function updateGuess() {
@@ -156,7 +158,7 @@ function gameWon() {
   currentGame.increaseCurrentGame();
   currentGame.increaseGuessRange();
   currentGame.restart();
-  updateMinMax();
+  updateMinMaxDisplay();
   checkFormInputs();
 }
 
