@@ -12,6 +12,13 @@ main {
   height: 100vh;
 }
 
+@media screen and (max-device-width:767px) {
+  main {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
 .bold {
   color: #6e6e6e;
   font-weight: 700;
@@ -39,14 +46,23 @@ button:hover:enabled {
 }
 
 /* || HEADING Formatting */
-header {
+/* header {
   background-color: #404041;
   color: white;
   display:flex;
   height: 120px;
   justify-content: center;
   text-align: center;
+} */
+header {
+  background-color: #404041;
+  color: white;
+  display: flex;
+  height: 120px;
+  justify-content: center;
+  text-align: center;
 }
+
 
 .title-container {
   display:flex;
@@ -123,15 +139,56 @@ input {
   outline: none;
   width: 100%;
 }
+/* || Set Range Block */
 
-.input-container {
-  display: inline-block;
-  margin-right: 20px;
-  min-width: 193px;
-  width: 30%;
+  .input-container {
+    display: inline-block;
+    margin-right: 20px;
+    min-width: 193px;
+    width: 30%;
+  }
+  .set-range-input-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .update-container {
+    align-self: flex-end;
+    display: inline-block;
+    min-width: 0;
+    right: 40px;
+    width: 100px;
+  }
+  .update-button {
+    display: inline-block;
+    width: fit-content;
+  }
+
+@media screen and (max-device-width:767px) {
+  .input-container {
+    display: inline-block;
+    min-width: 193px;
+    width: 100%;
+  }
+
+  .set-range-input-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .update-container {
+    align-self: center;
+    margin-left: 16px;
+  }
+
+  .update-button {
+    width: 100%;
+  }
 }
 
-/* || Set Range Block */
 .set-range-block {
   display: flex;
   flex-direction: column;
@@ -141,20 +198,6 @@ input {
   align-self: flex-start;
 }
 
-.set-range-input-flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.update-container {
-  align-self: flex-end;
-  display: inline-block;
-  min-width: 0;
-  right: 40px;
-  width: 100px;
-}
 
 .error-border {
   border: 2px solid #dd1792;
@@ -178,12 +221,10 @@ input {
   visibility: hidden;
 }
 
-.update-button {
-  display: inline-block;
-  width: fit-content;
-}
+
 
 /* || Challenger Block */
+
 .challenger-block {
   height: auto;
 }
@@ -213,6 +254,33 @@ input {
   justify-content: space-between;
   margin-top: 25px;
   width: 100%;
+}
+@media screen and (max-device-width:767px) {
+  .challenger-block {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .challenger-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .challenger-guess-container {
+    margin-left: 0;
+  }
+
+  .challenger-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 25px;
+    width: 100%;
+  }
 }
 
 #min-display,
