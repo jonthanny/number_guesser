@@ -240,9 +240,9 @@ function clearForm(clearInputs) {
 function checkFormInputs() {
   enableUpdateButton([minNumField, maxNumField]);
   checkValidMinMaxInput([minNumField, maxNumField]);
-  checkValidGuessInput();
   enableClearButton();
   enableSubmitButton(challengerInputFields);
+  checkValidGuessInput();
 }
 
 //Checks the associated button form to make sure the input has something in it
@@ -295,16 +295,22 @@ function checkValidMinMaxInput(inputsToCheck) {
   }
 }
 
+//Checks to make sure each guess is in range before allowing submission
 function checkValidGuessInput() {
   var challenger1Guess = parseInt(challenger1GuessField.value);
   var challenger2Guess = parseInt(challenger2GuessField.value);
-  var guessError = document.querySelector(".guess-error-box");
-  if ((challenger1Guess < currentGame.curMin  || challenger1Guess > currentGame.curMax) && challenger1GuessField.value.length > 0) {
-    guessError.classList.add("error-box-show");
-    challenger1GuessField.classList.add("error-border");
-  // } else {
-  //   minMaxError.classList.remove("error-box-show");
-  //   maxNumField.classList.remove("error-border");
+  var challengerGuessFields = [challenger1GuessField, challenger2GuessField]
+  var challengerGuesses = [challenger1Guess, challenger2Guess]
+  var guessError = document.querySelectorAll(".guess-error-box");
+  for (i = 0; i < 2; i++) {
+    if ((challengerGuesses[i] < currentGame.curMin  || challengerGuesses[i] > currentGame.curMax) && challengerGuessFields[i].value.length > 0) {
+      guessError[i].classList.add("error-box-show");
+      challengerGuessFields[i].classList.add("error-border");
+      submitButton.disabled = true;
+    } else {
+      challengerGuessFields[i].classList.remove("error-border");
+      guessError[i].classList.remove("error-box-show");
+    };
   }
 }
 
