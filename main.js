@@ -100,7 +100,7 @@ function updateMinMax() {
 }
 
 //This function updates the visual DOM element with the current Min and Max values in the Game object instance.
-function updateMinMaxDisplay(){
+function updateMinMaxDisplay() {
   minDisplay.innerHTML = currentGame.curMin;
   maxDisplay.innerHTML = currentGame.curMax;
 }
@@ -110,7 +110,7 @@ function updateGuess() {
   currentGame.challenger2GuessValue = parseInt(challenger2GuessField.value);
 }
 
-function updateGuessDisplay(){
+function updateGuessDisplay() {
   challenger1GuessDisplay.innerHTML = currentGame.challenger1GuessValue;
   challenger2GuessDisplay.innerHTML = currentGame.challenger2GuessValue;
 }
@@ -120,15 +120,16 @@ function updateChallengerNames() {
   currentGame.challenger2Name = challenger2NameField.value;
 }
 
-function updateChallengerNamesDisplay(){
+function updateChallengerNamesDisplay() {
   challenger1NameDisplay.innerHTML = currentGame.challenger1Name;
   challenger2NameDisplay.innerHTML = currentGame.challenger2Name;
 }
+
 function submitHelper() {
   updateGuess();
+  updateGuessDisplay();
   updateChallengerNames()
   updateChallengerNamesDisplay();
-  updateGuessDisplay();
   currentGame.increaseGuessCounter();
   currentGame.logStartTime();
   checkGuess([currentGame.challenger1GuessValue, currentGame.challenger2GuessValue]);
