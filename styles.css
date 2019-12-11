@@ -172,16 +172,18 @@ input {
 
 .error-box {
   color: #dd1792;
+  font-size: 14px;
   visibility: hidden;
 }
 
 .error-box-show {
   color: #dd1792;
+  font-size: 14px;
   visibility: visible;
 }
 
 .error-icon {
-  margin-right: 5px;
+  margin-right: 4px;
 }
 
 .div-spacer {
@@ -228,7 +230,7 @@ input {
 }
 
 .challenger-name-container {
-  flex-basis: 70%;
+  flex-basis: 60%;
   flex-grow: 1;
 }
 
