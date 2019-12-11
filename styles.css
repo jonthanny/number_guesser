@@ -1,9 +1,9 @@
 /* || General Formatting */
 * {
+  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 main {
@@ -17,46 +17,67 @@ main {
   font-weight: 700;
 }
 
+button {
+  background-color: #6e6e6e;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  height: auto;
+  margin: 5px 0 0 0;
+  outline: none;
+  padding: 5px 15px;
+}
+
+button:disabled {
+  background:#d0d2d3;
+}
+
+button:hover:enabled {
+  background-color: #dd1792;
+  transition-duration: 300ms;
+}
+
 /* || HEADING Formatting */
 header {
-  display:flex;
-  justify-content: center;
   background-color: #404041;
-  height: 120px;
   color: white;
+  display:flex;
+  height: 120px;
+  justify-content: center;
   text-align: center;
 }
 
 .title-container {
   display:flex;
   flex-direction: column;
-  width:440px;
   overflow: hidden;
+  width:440px;
 }
 .title-container h1 {
+  color: #dd1972;
   font-size: 50px;
   font-weight: 300;
-  color: #dd1972;
 }
 .logo-emphasis {
   font-weight: 800;
 }
 
 .title-container h2{
-  position:relative;
   font-size: 18px;
   font-weight: 300;
+  position: relative;
   text-align: center;
 }
 
 .title-container h2:before,
 .title-container h2:after {
-  position:absolute;
+  background-color: white;
+  content: '\a0';
+  height: 1px;
+  position: absolute;
   top: 51%;
   width: 20%;
-  background-color: white;
-  content:'\a0';
-  height:1px;
 }
 
 .title-container h2:before {
@@ -69,45 +90,45 @@ header {
 
 /* || Text Formatting*/
 .previous-game-card h1{
-  font-weight: 300;
   font-size: 28px;
+  font-weight: 300;
 }
 
 /* || Left Section Formatting */
 .left-side {
+  background-color: #f7f7f7;
+  border-right: 1px solid #8b8b8b;
   color: #404041;
   display: flex;
+  flex-basis: 50%;
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: 50%;
-  background-color: #f7f7f7;
-  border-right: 1px solid #8b8b8b;
 }
 
 .left-cards {
-  background-color: white;
-  justify-content: space-between;
   align-items: center;
+  background-color: white;
   border: 2px solid #d0d2d3;
-  width: 95%;
   height: auto;
+  justify-content: space-between;
   margin: 15px auto 0 auto;
   padding: 10px 15px;
+  width: 95%;
 }
 
 input {
-  width: 100%;
-  outline: none;
   border: 2px solid #d0d2d3;
   height: 33px;
+  outline: none;
+  width: 100%;
 }
 
 .input-container {
   display: inline-block;
-  width: 30%;
-  min-width: 193px;
   margin-right: 20px;
+  min-width: 193px;
+  width: 30%;
 }
 
 /* || Set Range Block */
@@ -128,11 +149,11 @@ input {
 }
 
 .update-container {
-  display: inline-block;
-  width: 100px;
-  right: 40px;
-  min-width: 0;
   align-self: flex-end;
+  display: inline-block;
+  min-width: 0;
+  right: 40px;
+  width: 100px;
 }
 
 .error-border {
@@ -190,29 +211,8 @@ input {
 .challenger-button-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   margin-top: 25px;
-}
-
-.form-buttons {
-  color: white;
-  outline: none;
-  background-color: #6e6e6e;
-  padding: 5px 15px;
-  margin: 5px 0 0 0;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 16px;
-  height: auto;
-}
-
-.form-buttons:disabled {
-  background:#d0d2d3;
-}
-
-.form-buttons:hover:enabled {
-  background-color: #dd1792;
-  transition-duration: 300ms;
+  width: 100%;
 }
 
 #min-display,
@@ -225,9 +225,9 @@ input {
 .latest-guess-block {
   display: flex;
   flex-direction: column;
+  font-size: 16px;
   height: 170px;
   padding: 5px;
-  font-size: 16px;
 }
 
 .latest-guess-block h4 {
@@ -280,16 +280,16 @@ input {
 
 /* || Right Section Formatting */
 .right-side {
-  display: flex;
-  flex-direction:column;
-  justify-content: flex-start;
   align-items: center;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 50%;
-  padding-top:10px;
   background-color: #d0d2d3;
   border-left: 1px solid #8b8b8b;
+  display: flex;
+  flex-basis: 50%;
+  flex-direction:column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: flex-start;
+  padding-top:10px;
 }
 
 /* || Previous Game Stat card */
@@ -302,8 +302,8 @@ input {
   font-size: 16px;
   height: 210px;
   margin:4px 0;
-  width:450px;
   padding: 10px;
+  width:450px;
 }
 
 .previous-game-card .verses-container{
@@ -348,13 +348,13 @@ input {
   padding-bottom: 4px;
 }
 
-
 /* || Prevoius Game Card - CSS Styling for Close Button*/
 .close-card-button {
   background: #8b8b8b;
   border-radius: 50%;
   cursor: pointer;
   height: 22px;
+  padding: 0;
   position: relative;
   width: 22px;
 }
@@ -372,12 +372,4 @@ input {
 
 .close-card-button .vertical {
  transform: rotate(-45deg);
-}
-
-.close-card-button .close-card-button:hover {
-  background-color: #d0d2d3;
-}
-
-.close-card-button .close-card-button:hover .cross {
-  background-color: #8b8b8b;
 }
