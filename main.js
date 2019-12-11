@@ -15,7 +15,6 @@ var maxNumField = document.querySelector("#max-input-range");
 var minDisplay = document.querySelector("#min-display");
 var minNumField = document.querySelector("#min-input-range");
 var inputContainer = document.querySelector(".input-container");
-var challengerContainer = document.querySelector(".challenger-card");
 // || Buttons || //
 var clearFormButton = document.querySelector("#clear-form-button");
 var resetButton = document.querySelector("#reset-button");

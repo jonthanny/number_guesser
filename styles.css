@@ -39,14 +39,13 @@ main {
   font-size: 18px;
   font-weight: 300;
   text-align: center;
-
 }
 
 .title-container h2:before,
 .title-container h2:after {
   position:absolute;
-  top:51%;
-  width:20%;
+  top: 51%;
+  width: 20%;
   background-color: white;
   content:'\a0';
   height:1px;
@@ -94,11 +93,27 @@ main {
   padding: 10px 15px;
 }
 
-.challenger-card {
+.input-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.set-range-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.set-range-block h4 {
+  align-self: flex-start;
+}
+
+.challenger-block {
   height: auto;
 }
 
-.challenger-card h4 {
+.challenger-block h4 {
   margin-top: 15px;
 }
 
@@ -112,13 +127,16 @@ main {
 .input-container {
   display: inline-block;
   width: 30%;
+  min-width: 193px;
   margin-right: 20px;
 }
 
 .update-container {
   display: inline-block;
-  width: 20%;
-  margin-right: 20px;
+  width: 100px;
+  right: 40px;
+  min-width: 0;
+  align-self: flex-end;
 }
 
 input {
@@ -150,8 +168,7 @@ input {
   visibility: hidden;
 }
 
-.challenger-input-container-1,
-.challenger-input-container-2 {
+.challenger-input-container {
   display: flex;
   width: 100%;
   /* margin: 15px 0; */
@@ -242,7 +259,7 @@ flex-grow: 1;
   justify-content: space-around;
 }
 
-.challenger-guess-container {
+.challenger-guess-display {
   align-items: center;
   color:#8b8b8b;
   display:flex;
