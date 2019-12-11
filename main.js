@@ -91,8 +91,7 @@ var currentGame = new Game;
 
 // || GAME FUNCTIONS || //
 //grabs the minimum and maximum values of the DOM input values
-//Updates min and max visually
-//Passes minValue and maxValue as arguments to resetGame
+//Updates min and max Game object instance properties.
 function updateMinMax() {
   currentGame.curMin = parseInt(minNumField.value);
   currentGame.curMax = parseInt(maxNumField.value);
@@ -100,6 +99,7 @@ function updateMinMax() {
   currentGame.newRandomNumber(currentGame.curMin, currentGame.curMax);
 }
 
+//This function updates the visual DOM element with the current Min and Max values in the Game object instance.
 function updateMinMaxDisplay(){
   minDisplay.innerHTML = currentGame.curMin;
   maxDisplay.innerHTML = currentGame.curMax;
@@ -110,23 +110,29 @@ function updateGuess() {
   currentGame.challenger2GuessValue = parseInt(challenger2GuessField.value);
 }
 
+function updateGuessDisplay(){
+  challenger1GuessDisplay.innerHTML = currentGame.challenger1GuessValue;
+  challenger2GuessDisplay.innerHTML = currentGame.challenger2GuessValue;
+}
+
 function updateChallengerNames() {
   currentGame.challenger1Name = challenger1NameField.value;
   currentGame.challenger2Name = challenger2NameField.value;
 }
 
-// NEED COMMENTS HERE
-function submitGuess() {
+function updateChallengerNamesDisplay(){
   challenger1NameDisplay.innerHTML = currentGame.challenger1Name;
   challenger2NameDisplay.innerHTML = currentGame.challenger2Name;
-  challenger1GuessDisplay.innerHTML = currentGame.challenger1GuessValue;
-  challenger2GuessDisplay.innerHTML = currentGame.challenger2GuessValue;
+}
+function submitHelper() {
+  updateGuess();
+  updateChallengerNames()
+  updateChallengerNamesDisplay();
+  updateGuessDisplay();
   currentGame.increaseGuessCounter();
-  checkGuess([currentGame.challenger1GuessValue, currentGame.challenger2GuessValue]);
-  if(currentGame.hasBeenWon == true) {
-    gameWon();
-  }
   currentGame.logStartTime();
+  checkGuess([currentGame.challenger1GuessValue, currentGame.challenger2GuessValue]);
+  currentGame.hasBeenWon == true ? gameWon(): '';
   checkFormInputs();
   clearForm([challenger1GuessField, challenger2GuessField]);
 }
@@ -210,11 +216,7 @@ function clearForm(clearInputs) {
   enableSubmitButton(challengerInputFields);
 }
 
-function submitHelper() {
-  updateGuess();
-  updateChallengerNames();
-  submitGuess();
-}
+
 
 // || VALIDATION FUNCTIONS || //
 // checkFormInputs() is called whenever a input field is changed.
