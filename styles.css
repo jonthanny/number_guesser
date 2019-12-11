@@ -173,13 +173,12 @@ input {
 .error-box {
   color: #dd1792;
   font-size: 14px;
-  visibility: visible;
-  background-color: yellow;
+  visibility: hidden;
 }
 
 .error-box-show {
   color: #dd1792;
-  font-size: 10px;
+  font-size: 14px;
   visibility: visible;
 }
 

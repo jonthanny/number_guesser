@@ -240,6 +240,7 @@ function clearForm(clearInputs) {
 function checkFormInputs() {
   enableUpdateButton([minNumField, maxNumField]);
   checkValidMinMaxInput([minNumField, maxNumField]);
+  checkValidGuessInput();
   enableClearButton();
   enableSubmitButton(challengerInputFields);
 }
@@ -291,6 +292,19 @@ function checkValidMinMaxInput(inputsToCheck) {
   } else {
     minMaxError.classList.remove("error-box-show");
     maxNumField.classList.remove("error-border");
+  }
+}
+
+function checkValidGuessInput() {
+  var challenger1Guess = parseInt(challenger1GuessField.value);
+  var challenger2Guess = parseInt(challenger2GuessField.value);
+  var guessError = document.querySelector(".guess-error-box");
+  if ((challenger1Guess < currentGame.curMin  || challenger1Guess > currentGame.curMax) && challenger1GuessField.value.length > 0) {
+    guessError.classList.add("error-box-show");
+    challenger1GuessField.classList.add("error-border");
+  // } else {
+  //   minMaxError.classList.remove("error-box-show");
+  //   maxNumField.classList.remove("error-border");
   }
 }
 
