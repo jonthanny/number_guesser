@@ -1,18 +1,9 @@
 /* || General Formatting */
 * {
+  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-header {
-  display:flex;
-  justify-content: center;
-  background-color: #404041;
-  height: 120px;
-  color: white;
-  text-align: center;
 }
 
 main {
@@ -20,35 +11,73 @@ main {
   flex-flow: row;
   height: 100vh;
 }
+
+.bold {
+  color: #6e6e6e;
+  font-weight: 700;
+}
+
+button {
+  background-color: #6e6e6e;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  height: auto;
+  margin: 5px 0 0 0;
+  outline: none;
+  padding: 5px 15px;
+}
+
+button:disabled {
+  background:#d0d2d3;
+}
+
+button:hover:enabled {
+  background-color: #dd1792;
+  transition-duration: 300ms;
+}
+
+/* || HEADING Formatting */
+header {
+  background-color: #404041;
+  color: white;
+  display:flex;
+  height: 120px;
+  justify-content: center;
+  text-align: center;
+}
+
 .title-container {
   display:flex;
   flex-direction: column;
-  width:440px;
   overflow: hidden;
+  width:440px;
 }
 .title-container h1 {
-  font-size: 50px;
   color: #dd1972;
+  font-size: 50px;
+  font-weight: 300;
 }
 .logo-emphasis {
   font-weight: 800;
 }
 
 .title-container h2{
-  position:relative;
   font-size: 18px;
   font-weight: 300;
+  position: relative;
   text-align: center;
 }
 
 .title-container h2:before,
 .title-container h2:after {
-  position:absolute;
+  background-color: white;
+  content: '\a0';
+  height: 1px;
+  position: absolute;
   top: 51%;
   width: 20%;
-  background-color: white;
-  content:'\a0';
-  height:1px;
 }
 
 .title-container h2:before {
@@ -61,45 +90,48 @@ main {
 
 /* || Text Formatting*/
 .previous-game-card h1{
-  font-weight: 300;
   font-size: 28px;
-}
-.bold {
-  color: #6e6e6e;
-  font-weight: 700;
+  font-weight: 300;
 }
 
-/* || Left and Right Section Formatting*/
 /* || Left Section Formatting */
 .left-side {
+  background-color: #f7f7f7;
+  border-right: 1px solid #8b8b8b;
   color: #404041;
   display: flex;
+  flex-basis: 50%;
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: 50%;
-  background-color: #f7f7f7;
-  border-right: 1px solid #8b8b8b;
 }
 
 .left-cards {
-  background-color: white;
-  justify-content: space-between;
   align-items: center;
+  background-color: white;
   border: 2px solid #d0d2d3;
-  width: 95%;
   height: auto;
+  justify-content: space-between;
   margin: 15px auto 0 auto;
   padding: 10px 15px;
+  width: 95%;
 }
 
-.input-block {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+input {
+  border: 2px solid #d0d2d3;
+  height: 33px;
+  outline: none;
   width: 100%;
 }
 
+.input-container {
+  display: inline-block;
+  margin-right: 20px;
+  min-width: 193px;
+  width: 30%;
+}
+
+/* || Set Range Block */
 .set-range-block {
   display: flex;
   flex-direction: column;
@@ -109,41 +141,19 @@ main {
   align-self: flex-start;
 }
 
-.challenger-block {
-  height: auto;
-}
-
-.challenger-block h4 {
-  margin-top: 15px;
-}
-
-#min-display,
-#max-display {
-  font-weight: bold;
-  /* border-bottom: 2px solid #404041; */
-  text-decoration: underline;
-}
-
-.input-container {
-  display: inline-block;
-  width: 30%;
-  min-width: 193px;
-  margin-right: 20px;
+.set-range-input-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .update-container {
-  display: inline-block;
-  width: 100px;
-  right: 40px;
-  min-width: 0;
   align-self: flex-end;
-}
-
-input {
-  width: 100%;
-  outline: none;
-  border: 2px solid #d0d2d3;
-  height: 33px;
+  display: inline-block;
+  min-width: 0;
+  right: 40px;
+  width: 100px;
 }
 
 .error-border {
@@ -168,17 +178,28 @@ input {
   visibility: hidden;
 }
 
+.update-button {
+  display: inline-block;
+  width: fit-content;
+}
+
+/* || Challenger Block */
+.challenger-block {
+  height: auto;
+}
+
+.challenger-block h4 {
+  margin-top: 15px;
+}
+
 .challenger-input-container {
   display: flex;
   width: 100%;
-  /* margin: 15px 0; */
-  /* padding: 10px; */
 }
 
 .challenger-name-container {
-  /* display: inline-block; */
-flex-basis: 70%;
-flex-grow: 1;
+  flex-basis: 70%;
+  flex-grow: 1;
 }
 
 .challenger-guess-container {
@@ -190,90 +211,30 @@ flex-grow: 1;
 .challenger-button-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   margin-top: 25px;
+  width: 100%;
 }
 
-.form-buttons {
-  color: white;
-  outline: none;
-  background-color: #6e6e6e;
-  padding: 5px 15px;
-  margin: 5px 0 0 0;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 16px;
-  height: auto;
+#min-display,
+#max-display {
+  font-weight: bold;
+  text-decoration: underline;
 }
 
-.form-buttons:disabled {
-  background:#d0d2d3;
-}
-
-.form-buttons:hover:enabled {
-  background-color: #dd1792;
-  transition-duration: 300ms;
-}
-
-.update-button {
-  display: inline-block;
-  width: fit-content;
-
-}
-
-/* || Right Section Formatting */
-.right-side {
-  display: flex;
-  flex-direction:column;
-  justify-content: flex-start;
-  align-items: center;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 50%;
-  padding-top:10px;
-  background-color: #d0d2d3;
-  border-left: 1px solid #8b8b8b;
-}
-
-/* || Latest Guess card*/
-.latest-guess{
+/* || Latest Guess Block*/
+.latest-guess-block {
   display: flex;
   flex-direction: column;
+  font-size: 16px;
   height: 170px;
   padding: 5px;
 }
 
-.latest-guess h4{
+.latest-guess-block h4 {
     align-self: flex-start;
     display: flex;
     flex-grow: 1;
     padding-left: 5px;
-}
-
-.challenger-container{
-  align-self: stretch;
-  display: flex;
-  flex-direction: row;
-  flex-grow: 3;
-  height: 170px;
-  justify-content: space-around;
-}
-
-.challenger-guess-display {
-  align-items: center;
-  color:#8b8b8b;
-  display:flex;
-  flex-direction: column;
-  flex-grow: 1;
-  font-size: 14px;
-  justify-content: space-between;
-  padding-bottom: 4px;
-  padding-top: 1px;
-}
-
-.challenger-guess {
-  height: 72px;
-  margin-bottom: -6px;
 }
 
 .challenger-guess h1 {
@@ -287,11 +248,51 @@ flex-grow: 1;
   font-size: 17px;
 }
 
+.challenger-container {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 3;
+  height: 170px;
+  justify-content: space-around;
+}
+
+.challenger-guess-display {
+  align-items: center;
+  color: #8b8b8b;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding-bottom: 4px;
+  padding-top: 1px;
+}
+
+.challenger-guess {
+  height: 72px;
+  margin-bottom: -6px;
+}
+
 .divider {
   border-left: 1px solid #d0d2d3;
   margin-top: -18px;
 }
-/* || Stat previous-game- cards*/
+
+/* || Right Section Formatting */
+.right-side {
+  align-items: center;
+  background-color: #d0d2d3;
+  border-left: 1px solid #8b8b8b;
+  display: flex;
+  flex-basis: 50%;
+  flex-direction:column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: flex-start;
+  padding-top:10px;
+}
+
+/* || Previous Game Stat card */
 .previous-game-card {
   background-color: white;
   border: solid 2px #8b8b8b;
@@ -301,8 +302,8 @@ flex-grow: 1;
   font-size: 16px;
   height: 210px;
   margin:4px 0;
-  width:450px;
   padding: 10px;
+  width:450px;
 }
 
 .previous-game-card .verses-container{
@@ -347,17 +348,18 @@ flex-grow: 1;
   padding-bottom: 4px;
 }
 
-
-/* || CSS Styling for Close Button*/
+/* || Prevoius Game Card - CSS Styling for Close Button*/
 .close-card-button {
   background: #8b8b8b;
   border-radius: 50%;
   cursor: pointer;
   height: 22px;
+  padding: 0;
   position: relative;
   width: 22px;
 }
-.cross{
+
+.close-card-button .cross {
   background-color: #d0d2d3;
   border-radius: 0;
   height: 2px;
@@ -367,13 +369,7 @@ flex-grow: 1;
   transform: rotate(45deg);
   width: 14px;
 }
-.vertical{
- transform: rotate(-45deg);
-}
-.close-card-button:hover {
-  background-color: #d0d2d3;
-}
 
-.close-card-button:hover .cross {
-  background-color: #8b8b8b;
+.close-card-button .vertical {
+ transform: rotate(-45deg);
 }
