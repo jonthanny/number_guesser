@@ -230,7 +230,7 @@ function clearForm(clearInputs) {
   for (var i = 0; i < clearInputs.length; i++) {
     clearInputs[i].value = "";
   }
-  clearFormButton.disabled = true;
+  enableClearButton();
   enableSubmitButton(challengerInputFields);
 }
 
@@ -274,7 +274,7 @@ function enableUpdateButton(minMaxInputs) {
 function enableClearButton() {
   var canClear = false;
   for (var i = 0; i < challengerInputFields.length; i++) {
-    if (challengerInputFields[i].value.length != 0 && canClear==false) {
+    if (challengerInputFields[i].value.length != 0) {
       canClear = true;
     }
   }
