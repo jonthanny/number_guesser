@@ -9,4 +9,4 @@ Along with the challenge of building out the functionality of the game, we were 
 
 Below is the final product:
 
-![Number Guesser Screenshot](https://github.com/jonthanny/number_guesser/blob/master/Screen%20Shot%202019-12-11%20at%204.20.52%20PM.png)
+![Number Guesser Screenshot](https://github.com/jonthanny/number_guesser/blob/master/Screen%20Shot%202019-12-11%20at%205.38.27%20PM.png)
