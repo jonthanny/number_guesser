@@ -287,7 +287,7 @@ input {
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  height: 170px;
+  height: 220px;
   padding: 5px;
 }
 
@@ -300,9 +300,9 @@ input {
 
 .challenger-guess h1 {
   color: #dd1972;
-  font-size: 66px;
+  font-size: 75px;
   font-weight: 800;
-  margin-top: -12px;
+  margin-top: -18px;
 }
 
 .guess-help-text {
@@ -325,18 +325,18 @@ input {
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
-  padding-bottom: 4px;
-  padding-top: 1px;
+  padding-top: 13px;
+  margin-bottom: 17px;
 }
 
 .challenger-guess {
-  height: 72px;
+  height: 90px;
   margin-bottom: -6px;
 }
 
 .divider {
-  border-left: 1px solid #d0d2d3;
-  margin-top: -18px;
+  border-left: 1.5px solid #d0d2d3;
+  margin-top: -9px;
 }
 
 /* || Right Section Formatting */
